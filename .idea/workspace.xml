@@ -40,14 +40,6 @@
       <change afterPath="$PROJECT_DIR$/frontend/tests/unit/example.spec.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/vue.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/.eslintrc.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/HeaderPage.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/PlayerAudio.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/user-content/section-my-music/MyMusic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/user-content/section-my-music/MyMusic.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vue.config.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +61,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -103,7 +95,8 @@
       <workItem from="1588961444426" duration="696000" />
       <workItem from="1588962141521" duration="5097000" />
       <workItem from="1589552219062" duration="294000" />
-      <workItem from="1589552707430" duration="15000" />
+      <workItem from="1589552707430" duration="78000" />
+      <workItem from="1589552799504" duration="146000" />
     </task>
     <servers />
   </component>
