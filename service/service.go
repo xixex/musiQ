@@ -124,9 +124,7 @@ func (s Service) SignIn(email, password string) (string, string, error) {
 	} else {
 		customClaims := repository.JWTPayload{
 			user.ID.Hex(),
-			jwt.StandardClaims{
-				ExpiresAt: time.Now().Add(time.Second * time.Duration(1800)).Unix(),
-			},
+			jwt.StandardClaims{},
 		}
 		token := jwt.NewWithClaims(jwt.SigningMethodHS256, customClaims)
 		accessToken, err := token.SignedString([]byte(repository.SecretKey))
