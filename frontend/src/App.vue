@@ -98,11 +98,8 @@ body {
 }
 
 div {
-  box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  width: 100%;
-  border-radius: 3px;
+  box-sizing: border-box;
 }
 
 </style>
