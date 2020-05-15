@@ -1,21 +1,74 @@
 <template>
   <div id="app">
-    <header-page />
-    <player-audio />
+    <page-header
+      @showSignIn="showSignIn"
+      @showSignUp="showSignUp"
+    />
+    <audio-player />
     <user-content />
+    <modal
+      v-if="isShowSignIn"
+      @close="hideSignIn"
+    >
+      <sign-in-form />
+    </modal>
+    <modal
+      v-if="isShowSignUp"
+      @close="hideSignUp"
+    >
+      <sign-up-form />
+    </modal>
   </div>
 </template>
 
 <script>
-import HeaderPage from '@/components/HeaderPage';
 import UserContent from '@/components/user-content/UserContent';
-import PlayerAudio from '@/components/PlayerAudio';
+import AudioPlayer from '@/components/AudioPlayer';
+import PageHeader from '@/components/page-header/PageHeader';
+import SignInForm from '@/components/page-header/SignInForm';
+import SignUpForm from '@/components/page-header/SignUpForm';
+import Modal from '@/components/common/Modal';
 
 export default {
+
   components: {
     UserContent,
-    HeaderPage,
-    PlayerAudio,
+    PageHeader,
+    AudioPlayer,
+    SignInForm,
+    SignUpForm,
+    Modal,
+  },
+
+  data() {
+    return {
+      isShowSignIn: false,
+      isShowSignUp: false,
+    };
+  },
+
+  mounted() {
+    if (localStorage.getItem('auth')) {
+      this.$store.commit('SET_AUTHORISED', true);
+    }
+  },
+
+  methods: {
+    showSignIn() {
+      this.isShowSignIn = true;
+    },
+
+    hideSignIn() {
+      this.isShowSignIn = false;
+    },
+
+    showSignUp() {
+      this.isShowSignUp = true;
+    },
+
+    hideSignUp() {
+      this.isShowSignUp = false;
+    },
   },
 };
 
@@ -48,9 +101,17 @@ div {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
   border-radius: 3px;
 }
 
+</style>
+
+<style lang="scss" scoped>
+  .sign-in-form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 </style>

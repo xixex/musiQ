@@ -5,8 +5,14 @@
       :key="i"
       @click="playTrack(track.src)"
     >
-      <button @click="playTrack(track)" v-text="'PLAy'"></button>
-      <button @click="trackStop" v-text="'STOP'"></button>
+      <button
+        @click="playTrack(track)"
+        v-text="'Play'"
+      />
+      <button
+        @click="trackStop"
+        v-text="'Stop'"
+      />
     </div>
   </div>
 </template>
@@ -25,6 +31,14 @@ export default {
       tracks: null,
       audio: null,
     };
+  },
+
+  mounted() {
+    axios.get('http://localhost:8080/api/audio/tracks')
+      .then((res) => {
+        this.tracks = res.data;
+        console.log(res);
+      });
   },
 
   methods: {
@@ -47,14 +61,6 @@ export default {
       this.audio.pause();
     },
 
-  },
-
-  mounted() {
-    axios.get('http://localhost:8080/api/audio/tracks')
-      .then((res) => {
-        this.tracks = res.data;
-        console.log(res);
-      });
   },
 };
 </script>
