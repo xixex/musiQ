@@ -8,17 +8,17 @@ import (
 
 func NewAPIRouter(r *mux.Router, api API) {
 	publicAPI := r.PathPrefix("/api").Subrouter()
-    publicAPI.Use(middleware.AllowCorsMiddleware)
 	publicAPI.Use(middleware.JsonTypeMiddleware)
+	publicAPI.Use(middleware.AllowCorsMiddleware)
 	publicAPI.Methods("GET").Path("/audio/tracks").HandlerFunc(api.GetAllTracks)
 	publicAPI.Methods("GET").Path("/audio/tracks/{id}").HandlerFunc(api.GetTrackByID)
 	publicAPI.Methods("GET").Path("/audio/playlists").HandlerFunc(api.GetAllPlaylists)
 	publicAPI.Methods("GET").Path("/audio/playlists/{id}").HandlerFunc(api.GetPlaylistByID)
 
 	authorizedAPI := r.PathPrefix("/api").Subrouter()
-	authorizedAPI.Use(middleware.AllowCorsMiddleware)
 	authorizedAPI.Use(JwtAuthMiddleware)
 	authorizedAPI.Use(middleware.JsonTypeMiddleware)
+	authorizedAPI.Use(middleware.AllowCorsMiddleware)
 	authorizedAPI.Methods("POST").Path("/audio/tracks").HandlerFunc(api.AddTrack)
 	authorizedAPI.Methods("PUT").Path("/audio/tracks/{id}").HandlerFunc(api.UpdateTrackByID)
 	authorizedAPI.Methods("DELETE", "OPTIONS").Path("/audio/tracks/{id}").HandlerFunc(api.DeleteTrackByID)
@@ -26,6 +26,7 @@ func NewAPIRouter(r *mux.Router, api API) {
 	authorizedAPI.Methods("PATCH").Path("/audio/user-list/add").HandlerFunc(api.AddTrackToUserTrackList)
 	authorizedAPI.Methods("PATCH").Path("/audio/user-list/remove").HandlerFunc(api.RemoveTrackFromUserTrackList)
 	authorizedAPI.Methods("POST").Path("/audio/playlists").HandlerFunc(api.CreateNewPlaylist)
+	authorizedAPI.Methods("DELETE", "OPTIONS").Path("/audio/playlists/{id}").HandlerFunc(api.DeletePlaylistByID)
 	authorizedAPI.Methods("GET").Path("/audio/user-playlists").HandlerFunc(api.GetUserPlaylists)
 	authorizedAPI.Methods("PATCH").Path("/audio/playlists/{id}/add").HandlerFunc(api.AddTracksToPlaylist)
 	authorizedAPI.Methods("PATCH").Path("/audio/playlists/{id}/remove").HandlerFunc(api.RemoveTracksFromPlaylist)
