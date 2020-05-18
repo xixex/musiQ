@@ -1,7 +1,7 @@
 <template>
   <div class="page-header">
     <img
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Apple_Music_logo.svg/1200px-Apple_Music_logo.svg.png"
+      :src="require('@/assets/logo.png')"
       alt=""
       class="logo"
     >
@@ -63,7 +63,6 @@ export default {
 <style lang="scss" scoped>
   .page-header{
     flex-direction: row;
-    border: 1px solid red;
     box-sizing: border-box;
     width: 100%;
     height: 50px;
@@ -76,7 +75,6 @@ export default {
     justify-content: center;
     text-align: center;
     padding: 0 10px;
-    border: 1px solid red;
     cursor: pointer;
   }
 

@@ -49,6 +49,6 @@ export default {
     width: max-content;
     padding: 20px;
     text-decoration: none;
-    color: black;
+    color: white;
   }
 </style>

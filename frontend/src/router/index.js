@@ -4,6 +4,8 @@ import MyMusic from '@/components/user-content/section-my-music/MyMusic';
 import Playlists from '@/components/user-content/section-playlists/Playlists';
 import Popular from '@/components/user-content/section-popular/Popular';
 import Recent from '@/components/user-content/section-recent/Recent';
+import axios from 'axios';
+import { ACTIONS_SIGN_OUT, MUTATION_SIGN_IN } from '@/store/modules/auth';
 
 Vue.use(VueRouter);
 

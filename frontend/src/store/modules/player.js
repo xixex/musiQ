@@ -1,10 +1,13 @@
 import Hls from 'hls.js';
 
 export const MUTATION_SET_CURRENT_TRACK_OBJ = 'MUTATION_SET_CURRENT_TRACK_OBJ';
+export const MUTATION_SET_ALL_TRACKS = 'MUTATION_SET_ALL_TRACKS';
 
 export const ACTION_INIT_PLAYER_WITH_TRACK = 'ACTION_INIT_PLAYER_WITH_TRACK';
 export const ACTION_PLAY_TRACK = 'ACTION_PLAY_TRACK';
 export const ACTION_PAUSE_TRACK = 'ACTION_PAUSE_TRACK';
+export const ACTION_PLAY_NEXT_TRACK = 'ACTION_PLAY_NEXT_TRACK';
+export const ACTION_PLAY_PREV_TRACK = 'ACTION_PLAY_PREV_TRACK';
 
 export default {
   state: () => ({
@@ -20,6 +23,10 @@ export default {
     [MUTATION_SET_CURRENT_TRACK_OBJ](state, { trackObj }) {
       state.currentTrackObj = trackObj;
     },
+
+    [MUTATION_SET_ALL_TRACKS](state, { tracks }) {
+      state.allTracks = tracks;
+    },
   },
 
   actions: {
@@ -29,7 +36,7 @@ export default {
       }
 
       state.currentTrackObj = track;
-      state.currentTrackObj.duration = '00:00:00';
+      state.currentTrackObj.duration = 0;
       const audioSrc = `http://localhost:8080/media/${state.currentTrackObj.id}/stream/`;
       state.currentTrackAudioInstance = new Audio(audioSrc);
       state.hls = new Hls();
@@ -69,6 +76,18 @@ export default {
     [ACTION_PAUSE_TRACK]: ({ state }) => {
       state.currentTrackAudioInstance.pause();
       state.isPlaying = false;
+    },
+
+    [ACTION_PLAY_NEXT_TRACK]: ({ state, dispatch }) => {
+      if (state.currentTrackObj) {
+        dispatch(ACTION_PLAY_TRACK, { track: state.currentTrackObj.nextTrack });
+      }
+    },
+
+    [ACTION_PLAY_PREV_TRACK]: ({ state, dispatch }) => {
+      if (state.currentTrackObj) {
+        dispatch(ACTION_PLAY_TRACK, { track: state.currentTrackObj.previousTrack });
+      }
     },
   },
 

@@ -26,7 +26,7 @@ import PageHeader from '@/components/page-header/PageHeader';
 import SignInForm from '@/components/page-header/SignInForm';
 import SignUpForm from '@/components/page-header/SignUpForm';
 import { mapActions } from 'vuex';
-import { ACTION_REFRESH_TOKEN } from '@/store/modules/auth';
+import { ACTION_CHECK_IF_AUTHORIZED } from '@/store/modules/auth';
 
 export default {
 
@@ -46,7 +46,7 @@ export default {
   },
 
   mounted() {
-    this.ACTION_REFRESH_TOKEN();
+    this.ACTION_CHECK_IF_AUTHORIZED();
   },
 
   methods: {
@@ -67,7 +67,7 @@ export default {
     },
 
     ...mapActions({
-      ACTION_REFRESH_TOKEN,
+      ACTION_CHECK_IF_AUTHORIZED,
     }),
   },
 };
@@ -80,7 +80,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -102,12 +101,12 @@ body {
 div {
   display: flex;
   box-sizing: border-box;
+  color: white;
 }
 
 </style>
 
 <style lang="scss" scoped>
-
 
   .sign-in-form{
     position: absolute;

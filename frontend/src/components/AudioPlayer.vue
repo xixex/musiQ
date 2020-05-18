@@ -124,6 +124,7 @@ export default {
     color: white;
     font-size: 14px;
     background: rgba(21,21,24);
+    padding: 15px 0;
   }
 
   .player-content{
@@ -213,7 +214,7 @@ export default {
 
   .time-line-progress{
     height: 100%;
-    background-image: linear-gradient(#FDFC47, #24FE41);
+    background-image: linear-gradient(90deg, #ee0979, #ff6a00);
   }
 
   @media only screen and (max-width: 1440px) {

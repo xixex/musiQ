@@ -7,7 +7,6 @@
       alt=""
       :src="statusLogo"
       class="status-btn"
-      v-text="'|>'"
     >
     <div class="track-name">
       <span
@@ -24,8 +23,12 @@
 
 <script>
 
-import { mapActions, mapState } from 'vuex';
-import { ACTION_PAUSE_TRACK, ACTION_PLAY_TRACK } from '@/store/modules/player';
+import { mapActions, mapMutations, mapState } from 'vuex';
+import {
+  ACTION_PAUSE_TRACK,
+  ACTION_PLAY_TRACK,
+  MUTATION_SET_ALL_TRACKS,
+} from '@/store/modules/player';
 
 export default {
   props: {
@@ -33,12 +36,11 @@ export default {
       required: true,
       default: null,
     },
-  },
 
-  data() {
-    return {
-
-    };
+    allTracks: {
+      required: true,
+      default: null,
+    },
   },
 
   computed: {
@@ -49,8 +51,8 @@ export default {
 
     statusLogo() {
       return this.isPlaying
-        ? 'https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-pause-vector-icon-png-image_470715.jpg'
-        : 'https://c7.hotpng.com/preview/763/173/273/computer-icons-youtube-play-button-clip-art-icon-png-play-button.jpg';
+        ? require('@/assets/pause.svg')
+        : require('@/assets/play.svg');
     },
 
     isPlaying() {
@@ -66,6 +68,10 @@ export default {
       ACTION_PAUSE_TRACK,
     }),
 
+    ...mapMutations({
+      MUTATION_SET_ALL_TRACKS,
+    }),
+
     playPause() {
       this.isPlaying
         ? this.pauseTrack()
@@ -73,6 +79,7 @@ export default {
     },
 
     playTrack() {
+      this.MUTATION_SET_ALL_TRACKS({ tracks: this.allTracks });
       this.ACTION_PLAY_TRACK({ track: this.track });
     },
 
@@ -90,8 +97,9 @@ export default {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    border: 1px solid blue;
     cursor: pointer;
+    color: white;
+    font-size: 14px;
   }
 
   .status-btn{
@@ -104,7 +112,7 @@ export default {
   .track-name{
     flex-direction: column;
     text-align: left;
-
+    padding: 0 5px;
   }
 
   .title{

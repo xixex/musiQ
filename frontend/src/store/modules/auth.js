@@ -6,7 +6,7 @@ export const MUTATION_SIGN_OUT = 'MUTATION_SIGN_OUT';
 export const ACTION_SIGN_UP = 'ACTION_SIGN_UP';
 export const ACTION_SIGN_IN = 'ACTION_SIGN_IN';
 export const ACTIONS_SIGN_OUT = 'ACTIONS_SIGN_OUT';
-export const ACTION_REFRESH_TOKEN = 'ACTION_REFRESH_TOKEN';
+export const ACTION_CHECK_IF_AUTHORIZED = 'ACTION_CHECK_IF_AUTHORIZED';
 
 export default {
   state: () => ({
@@ -65,7 +65,7 @@ export default {
         });
     },
 
-    [ACTION_REFRESH_TOKEN]({ commit }) {
+    [ACTION_CHECK_IF_AUTHORIZED]({ commit }) {
       const refreshToken = localStorage.getItem('refresh_token');
 
       return axios.post('http://localhost:8080/auth/refresh-token', {
