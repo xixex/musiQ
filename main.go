@@ -12,9 +12,9 @@ import (
 	"github.com/gorilla/mux"
 
 	"github.com/777777miSSU7777777/go-ass/api"
+	"github.com/777777miSSU7777777/go-ass/media"
 	"github.com/777777miSSU7777777/go-ass/repository"
 	"github.com/777777miSSU7777777/go-ass/service"
-	"github.com/777777miSSU7777777/go-ass/stream"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -42,7 +42,7 @@ func main() {
 
 	flag.StringVar(&connectionString, "connection_string", "", "DB connection string")
 	homePath := os.Getenv("HOME")
-	flag.StringVar(&baseLocation, "storage_location", homePath+"/goass/storage", "Storage location")
+	flag.StringVar(&baseLocation, "storage_location", homePath+"/goass", "Go ASS storage location")
 	flag.BoolVar(&apiOnly, "api_only", true, "Run only api without frontend")
 	flag.Parse()
 
@@ -67,15 +67,15 @@ func main() {
 	repo := repository.New(db)
 	svc := service.New(repo)
 	u := api.NewFileManager(baseLocation)
-	m := stream.NewMediaManager(baseLocation)
+	m := media.NewMediaManager(baseLocation)
 	apiHandlers := api.NewApi(svc, u)
-	streamHandlers := stream.NewStreamAPI(m)
+	mediaHandlers := media.NewMediaAPI(m)
 
 	r := mux.NewRouter()
 
 	api.NewAPIRouter(r, apiHandlers)
 	api.NewAuthRouter(r, apiHandlers)
-	stream.NewStreamRouter(r, streamHandlers)
+	media.NewMediaRouter(r, mediaHandlers)
 
 	r.Handle("/health-check", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(200)

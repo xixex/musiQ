@@ -47,6 +47,7 @@ type DeletePlaylistByIDRequest struct{}
 type CreateNewPlaylistRequest struct {
 	Title     string   `json:"title"`
 	TrackList []string `json:"tracklist"`
+	CoverPic  string   `json:"cover_pic"`
 }
 
 type AddTracksToPlaylistRequest struct {

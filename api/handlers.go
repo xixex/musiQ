@@ -60,6 +60,13 @@ func (a API) AddTrack(w http.ResponseWriter, r *http.Request) {
 			_ = a.m.Delete(w, newTrack.ID.Hex())
 			return
 		}
+		err = a.m.UploadCoverPic(w, r, true, "", "tracks_pics", newTrack.ID.Hex())
+		if err != nil {
+			_ = a.svc.DeleteTrackByID(newTrack.ID.Hex())
+			_ = a.m.Delete(w, newTrack.ID.Hex())
+			_ = a.m.DeleteCoverPic(w, "tracks_pics", newTrack.ID.Hex())
+			return
+		}
 	}
 
 	_ = json.NewEncoder(w).Encode(AddTrackResponse{newTrack.ID.Hex(), newTrack.Author, newTrack.Title})
@@ -158,6 +165,8 @@ func (a API) DeleteTrackByID(w http.ResponseWriter, r *http.Request) {
 			writeError(w, 400, ServiceError, err)
 		}
 		return
+	} else {
+		_ = a.m.DeleteCoverPic(w, "tracks_pics", trackID)
 	}
 
 	_ = json.NewEncoder(w).Encode(DeleteTrackByIDResponse{})
@@ -363,6 +372,13 @@ func (a API) CreateNewPlaylist(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		writeError(w, 400, ServiceError, err)
 		return
+	} else {
+		err = a.m.UploadCoverPic(w, r, false, req.CoverPic, "playlists_pics", playlist.ID.Hex())
+		if err != nil {
+			_ = a.svc.DeletePlaylistByID(userID, playlist.ID.Hex())
+			_ = a.m.DeleteCoverPic(w, "playlists_pics", playlist.ID.Hex())
+			return
+		}
 	}
 
 	resp := PlaylistResponse{ID: playlist.ID.Hex(), Title: playlist.Title}
@@ -408,6 +424,8 @@ func (a API) DeletePlaylistByID(w http.ResponseWriter, r *http.Request) {
 			writeError(w, 400, ServiceError, err)
 			return
 		}
+	} else {
+		_ = a.m.DeleteCoverPic(w, "playlists_pics", playlistID)
 	}
 
 	_ = json.NewEncoder(w).Encode(DeletePlaylistByIDResponse{})
