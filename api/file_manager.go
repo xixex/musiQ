@@ -18,6 +18,7 @@ var DeleteAudioError = "DELETE AUDIO ERROR"
 var FileExtensionError = "FILE EXTENSION ERROR"
 var CoverPicFileSizeError = "COVER PIC FILE SIZE ERROR"
 var DeleteCoverPicError = "DELETE COVER PIC ERROR"
+var AudioFileSizeError = "AUDIO FILE SIZE ERROR"
 
 type FileManager struct {
 	baseLocation               string
@@ -38,24 +39,16 @@ func NewFileManager(base string) FileManager {
 	return FileManager{base, mainManifestTemplateString}
 }
 
-func (m FileManager) Upload(w http.ResponseWriter, r *http.Request, id string) error {
-	err := r.ParseMultipartForm(20 << 20)
-	if err != nil {
-		writeError(w, 400, ParseFormError, fmt.Errorf("error while parsing file form: %v", err))
-		return err
-	}
-
-	formfile, _, err := r.FormFile("audiofile")
-	if err != nil {
-		writeError(w, 400, FileUploadError, fmt.Errorf("error while uploading file: %v", err))
-		return err
-	}
-	defer formfile.Close()
-
-	fileBytes, err := ioutil.ReadAll(formfile)
+func (m FileManager) Upload(w http.ResponseWriter, base64audio string, id string) error {
+	audioBytes, err := base64.StdEncoding.DecodeString(base64audio)
 	if err != nil {
 		writeError(w, 400, FileReadError, fmt.Errorf("error while reading file: %v", err))
 		return err
+	}
+
+	if len(audioBytes) > 20971520 {
+		writeError(w, 400, AudioFileSizeError, fmt.Errorf("audio file size error: %v", err))
+		return fmt.Errorf("audio file size error: %v", err)
 	}
 
 	err = os.MkdirAll(fmt.Sprintf("%s/storage/%s/mp3", m.baseLocation, id), 0755)
@@ -71,7 +64,7 @@ func (m FileManager) Upload(w http.ResponseWriter, r *http.Request, id string) e
 	}
 	defer file.Close()
 
-	_, err = file.Write(fileBytes)
+	_, err = file.Write(audioBytes)
 	if err != nil {
 		writeError(w, 500, FileWriteError, fmt.Errorf("error while writing file: %v", err))
 		return err
@@ -86,39 +79,16 @@ func (m FileManager) Upload(w http.ResponseWriter, r *http.Request, id string) e
 	return nil
 }
 
-func (m FileManager) UploadCoverPic(w http.ResponseWriter, r *http.Request, isFormData bool, base64pic string, picDst string, id string) error {
-	var coverPicBytes []byte
-	var err error
-	if isFormData {
-		err := r.ParseMultipartForm(300 << 10)
-		if err != nil {
-			writeError(w, 400, ParseFormError, fmt.Errorf("error while parsing file form: %v", err))
-			return err
-		}
+func (m FileManager) UploadCoverPic(w http.ResponseWriter, r *http.Request, base64pic string, picDst string, id string) error {
+	coverPicBytes, err := base64.StdEncoding.DecodeString(base64pic)
+	if err != nil {
+		writeError(w, 400, FileReadError, fmt.Errorf("error while reading file: %v", err))
+		return err
+	}
 
-		formfile, _, err := r.FormFile("picfile")
-		if err != nil {
-			writeError(w, 400, FileUploadError, fmt.Errorf("error while uploading file: %v", err))
-			return err
-		}
-		defer formfile.Close()
-
-		coverPicBytes, err = ioutil.ReadAll(formfile)
-		if err != nil {
-			writeError(w, 400, FileReadError, fmt.Errorf("error while reading file: %v", err))
-			return err
-		}
-	} else {
-		if len(coverPicBytes) > 307200 {
-			writeError(w, 400, CoverPicFileSizeError, fmt.Errorf("cover pic file size error"))
-			return fmt.Errorf("cover pic file size error")
-		}
-
-		coverPicBytes, err = base64.StdEncoding.DecodeString(base64pic)
-		if err != nil {
-			writeError(w, 400, FileReadError, fmt.Errorf("error while reading file: %v", err))
-			return err
-		}
+	if len(coverPicBytes) > 307200 {
+		writeError(w, 400, CoverPicFileSizeError, fmt.Errorf("cover pic file size error"))
+		return fmt.Errorf("cover pic file size error")
 	}
 
 	_, err = m.getFileExtensionByMIMEType(coverPicBytes)

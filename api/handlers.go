@@ -40,11 +40,17 @@ func NewApi(svc service.Service, m FileManager) API {
 }
 
 func (a API) AddTrack(w http.ResponseWriter, r *http.Request) {
-	author, title := r.FormValue("author"), r.FormValue("title")
+	var req AddTrackRequest
+
+	err := json.NewDecoder(r.Body).Decode(&req)
+	if err != nil {
+		writeError(w, 400, BodyParseError, fmt.Errorf("error while parsing body: %v", err))
+		return
+	}
 
 	userID := r.Context().Value("userID").(string)
 
-	newTrack, err := a.svc.AddTrack(author, title, userID)
+	newTrack, err := a.svc.AddTrack(req.Author, req.Title, userID)
 	if err != nil {
 		if err.Error() == model.TrackAuthorEmpty.Error() || err.Error() == model.TrackTitleEmpty.Error() {
 			writeError(w, 400, ValidationError, err)
@@ -54,13 +60,13 @@ func (a API) AddTrack(w http.ResponseWriter, r *http.Request) {
 		_ = a.m.Delete(w, newTrack.ID.Hex())
 		return
 	} else {
-		err = a.m.Upload(w, r, newTrack.ID.Hex())
+		err = a.m.Upload(w, req.AudioFile, newTrack.ID.Hex())
 		if err != nil {
 			_ = a.svc.DeleteTrackByID(newTrack.ID.Hex())
 			_ = a.m.Delete(w, newTrack.ID.Hex())
 			return
 		}
-		err = a.m.UploadCoverPic(w, r, true, "", "tracks_pics", newTrack.ID.Hex())
+		err = a.m.UploadCoverPic(w, r, req.CoverPic, "tracks_pics", newTrack.ID.Hex())
 		if err != nil {
 			_ = a.svc.DeleteTrackByID(newTrack.ID.Hex())
 			_ = a.m.Delete(w, newTrack.ID.Hex())
@@ -373,7 +379,7 @@ func (a API) CreateNewPlaylist(w http.ResponseWriter, r *http.Request) {
 		writeError(w, 400, ServiceError, err)
 		return
 	} else {
-		err = a.m.UploadCoverPic(w, r, false, req.CoverPic, "playlists_pics", playlist.ID.Hex())
+		err = a.m.UploadCoverPic(w, r, req.CoverPic, "playlists_pics", playlist.ID.Hex())
 		if err != nil {
 			_ = a.svc.DeletePlaylistByID(userID, playlist.ID.Hex())
 			_ = a.m.DeleteCoverPic(w, "playlists_pics", playlist.ID.Hex())

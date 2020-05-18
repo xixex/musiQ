@@ -1,6 +1,11 @@
 package api
 
-type AddTrackRequest struct{}
+type AddTrackRequest struct {
+	Author    string `json:"author"`
+	Title     string `json:"title"`
+	AudioFile string `json:"audio_file"`
+	CoverPic  string `json:"cover_pic"`
+}
 
 type GetTrackByIDRequest struct{}
 
