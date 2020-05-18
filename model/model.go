@@ -9,7 +9,7 @@ import (
 var TrackAuthorEmpty = errors.New("track author name is empty")
 var TrackTitleEmpty = errors.New("track title is empty")
 var UserEmailEmpty = errors.New("user email is empty")
-var UserEmailLength = errors.New("user email must be between 20 - 40 symbols length")
+var UserEmailLength = errors.New("user email must be between 3 - 40 symbols length")
 var UserNameEmpty = errors.New("user name is empty")
 var UserNameLength = errors.New("user name length must be between 5 - 16 symbols length")
 var UserPasswordEmpty = errors.New("user password is empty")
@@ -48,7 +48,7 @@ func ValidateUser(email, name, password string) error {
 	if email == "" {
 		return UserEmailEmpty
 	}
-	if len(email) < 20 || len(email) > 40 {
+	if len(email) < 3 || len(email) > 40 {
 		return UserEmailLength
 	}
 
