@@ -92,9 +92,13 @@ func (m FileManager) UploadCoverPic(w http.ResponseWriter, r *http.Request, picD
 
 	formfile, _, err := r.FormFile("picfile")
 	if err != nil {
+		if err.Error() == "http: no such file" {
+			return nil
+		}
 		writeError(w, 400, FileUploadError, fmt.Errorf("error while uploading file: %v", err))
 		return err
 	}
+
 	defer formfile.Close()
 
 	picBytes, err := ioutil.ReadAll(formfile)
