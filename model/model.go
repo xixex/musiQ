@@ -48,21 +48,21 @@ func ValidateUser(email, name, password string) error {
 	if email == "" {
 		return UserEmailEmpty
 	}
-	if len(email) < 20 && len(email) > 40 {
+	if len(email) < 20 || len(email) > 40 {
 		return UserEmailLength
 	}
 
 	if name == "" {
 		return UserNameEmpty
 	}
-	if len(name) < 5 && len(name) > 16 {
+	if len(name) < 5 || len(name) > 16 {
 		return UserNameLength
 	}
 
 	if password == "" {
 		return UserPasswordEmpty
 	}
-	if len(password) < 8 && len(password) > 40 {
+	if len(password) < 8 || len(password) > 40 {
 		return UserPasswordLength
 	}
 
