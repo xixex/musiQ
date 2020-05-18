@@ -1,6 +1,10 @@
 <template>
   <div class="player-audio">
-    Player
+    <div class="controls">
+      <div> < </div>
+      <div>V</div>
+      <div> > </div>
+    </div>
   </div>
 </template>
 
@@ -12,10 +16,12 @@ export default {
 
 <style lang="scss" scoped>
   .player-audio{
+    position: fixed;
+    bottom: 0;
     border: 1px solid green;
     box-sizing: border-box;
     justify-content: center;
     width: 100%;
-    height: 80px;
+    height: 100px;
   }
 </style>

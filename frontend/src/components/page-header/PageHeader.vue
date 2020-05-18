@@ -29,12 +29,14 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex';
+import { ACTIONS_SIGN_OUT } from '@/store/modules/auth';
+
 
 export default {
   computed: {
     ...mapState({
-      isAuthorised: 'isAuthorised',
+      isAuthorised: (state) => state.auth.isAuthorised,
     }),
   },
 
@@ -48,9 +50,12 @@ export default {
     },
 
     logOut() {
-      localStorage.removeItem('auth');
-      this.$store.commit('SET_AUTHORISED', false);
+      this.ACTIONS_SIGN_OUT();
     },
+
+    ...mapActions({
+      ACTIONS_SIGN_OUT,
+    }),
   },
 };
 </script>

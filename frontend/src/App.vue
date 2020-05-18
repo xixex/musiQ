@@ -4,20 +4,18 @@
       @showSignIn="showSignIn"
       @showSignUp="showSignUp"
     />
-    <audio-player />
     <user-content />
-    <modal
+    <audio-player />
+
+    <sign-in-form
       v-if="isShowSignIn"
       @close="hideSignIn"
-    >
-      <sign-in-form />
-    </modal>
-    <modal
+    />
+
+    <sign-up-form
       v-if="isShowSignUp"
       @close="hideSignUp"
-    >
-      <sign-up-form />
-    </modal>
+    />
   </div>
 </template>
 
@@ -27,7 +25,8 @@ import AudioPlayer from '@/components/AudioPlayer';
 import PageHeader from '@/components/page-header/PageHeader';
 import SignInForm from '@/components/page-header/SignInForm';
 import SignUpForm from '@/components/page-header/SignUpForm';
-import Modal from '@/components/common/Modal';
+import { mapActions } from 'vuex';
+import { ACTION_REFRESH_TOKEN } from '@/store/modules/auth';
 
 export default {
 
@@ -37,7 +36,6 @@ export default {
     AudioPlayer,
     SignInForm,
     SignUpForm,
-    Modal,
   },
 
   data() {
@@ -48,9 +46,7 @@ export default {
   },
 
   mounted() {
-    if (localStorage.getItem('auth')) {
-      this.$store.commit('SET_AUTHORISED', true);
-    }
+    this.ACTION_REFRESH_TOKEN();
   },
 
   methods: {
@@ -69,6 +65,10 @@ export default {
     hideSignUp() {
       this.isShowSignUp = false;
     },
+
+    ...mapActions({
+      ACTION_REFRESH_TOKEN,
+    }),
   },
 };
 
@@ -105,6 +105,10 @@ div {
 </style>
 
 <style lang="scss" scoped>
+  #app{
+    height: 100vh;
+  }
+
   .sign-in-form{
     position: absolute;
     top: 50%;

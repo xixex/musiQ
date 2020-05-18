@@ -1,42 +1,74 @@
 <template>
-  <form
-    class="form"
-    @submit="signIn"
-  >
-    <label
-      class="label"
-      for="sign-in-email"
-      v-text="'Email'"
-    />
-    <input
-      id="sign-in-email"
-      type="text"
-      class="form-input"
+  <modal @close="closeForm">
+    <form
+      class="form"
+      @submit.prevent="signIn"
     >
-    <label
-      class="label"
-      for="sign-in-password"
-      v-text="'Password'"
-    />
-    <input
-      id="sign-in-password"
-      type="password"
-      class="form-input"
-    >
-    <input
-      type="submit"
-      class="form-btn"
-      value="Sign In"
-    >
-  </form>
+      <label
+        class="label"
+        for="sign-in-email"
+        v-text="'Email'"
+      />
+      <input
+        id="sign-in-email"
+        v-model="email"
+        type="text"
+        class="form-input"
+      >
+      <label
+        class="label"
+        for="sign-in-password"
+        v-text="'Password'"
+      />
+      <input
+        id="sign-in-password"
+        v-model="password"
+        type="password"
+        class="form-input"
+      >
+      <input
+        type="submit"
+        class="form-btn"
+        value="Sign In"
+      >
+    </form>
+  </modal>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+import Modal from '@/components/common/Modal';
+import { ACTION_SIGN_IN } from '@/store/modules/auth';
+
 export default {
+  components: {
+    Modal,
+  },
+
+  data() {
+    return {
+      email: '',
+      password: '',
+    };
+  },
+
   methods: {
     signIn() {
-
+      this.ACTION_SIGN_IN({
+        email: this.email, password: this.password,
+      })
+        .then(() => {
+          this.closeForm();
+        });
     },
+
+    closeForm() {
+      this.$emit('close');
+    },
+
+    ...mapActions({
+      ACTION_SIGN_IN,
+    }),
   },
 };
 </script>
