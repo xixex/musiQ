@@ -81,10 +81,12 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  width: 70vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url('http://jellydemos.com/wordpress/decibel/wp-content/uploads/2018/08/intro-slide3.jpg');
+  height: 100vh;
 }
 
 body {
@@ -105,9 +107,7 @@ div {
 </style>
 
 <style lang="scss" scoped>
-  #app{
-    height: 100vh;
-  }
+
 
   .sign-in-form{
     position: absolute;

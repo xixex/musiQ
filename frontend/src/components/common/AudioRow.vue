@@ -1,7 +1,7 @@
 <template>
   <div
     class="audio-row"
-    @click="playPause"
+    @click.stop="playPause"
   >
     <img
       alt=""
@@ -19,16 +19,13 @@
         v-text="track.author"
       />
     </div>
-    <span
-      class="current-time"
-      v-text="currentTime"
-    />
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-import Hls from 'hls.js';
+
+import { mapActions, mapState } from 'vuex';
+import { ACTION_PAUSE_TRACK, ACTION_PLAY_TRACK } from '@/store/modules/player';
 
 export default {
   props: {
@@ -40,64 +37,47 @@ export default {
 
   data() {
     return {
-      isPlaying: false,
-      hls: null,
-      audioInstance: null,
-      currentTime: '0',
+
     };
   },
 
   computed: {
+    ...mapState({
+      currentTrackObj: (state) => state.player.currentTrackObj,
+      isPlayerPlaying: (state) => state.player.isPlaying,
+    }),
+
     statusLogo() {
       return this.isPlaying
         ? 'https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-pause-vector-icon-png-image_470715.jpg'
         : 'https://c7.hotpng.com/preview/763/173/273/computer-icons-youtube-play-button-clip-art-icon-png-play-button.jpg';
     },
+
+    isPlaying() {
+      return this.currentTrackObj
+        && this.track.id === this.currentTrackObj.id
+        && this.isPlayerPlaying === true;
+    },
   },
 
   methods: {
+    ...mapActions({
+      ACTION_PLAY_TRACK,
+      ACTION_PAUSE_TRACK,
+    }),
+
     playPause() {
       this.isPlaying
         ? this.pauseTrack()
         : this.playTrack();
     },
 
-    initPlayer() {
-      this.audioInstance = new Audio(`http://localhost:8080/media/${this.track.id}/stream/`);
-      this.audioInstance.ontimeupdate = this.onTimeUpdateListener;
-      const audioSrc = `http://localhost:8080/media/${this.track.id}/stream/`;
-
-      this.hls = new Hls();
-      this.hls.loadSource(audioSrc);
-      this.hls.attachMedia(this.audioInstance);
-      this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        this.audioInstance.play();
-      });
-    },
-
     playTrack() {
-      this.isPlaying = true;
-
-      if (this.hls === null) {
-        this.initPlayer();
-      } else {
-        this.audioInstance.play();
-      }
+      this.ACTION_PLAY_TRACK({ track: this.track });
     },
 
     pauseTrack() {
-      this.isPlaying = false;
-      this.audioInstance.pause();
-    },
-
-    onTimeUpdateListener() {
-      this.currentTime = this.secondsToTime(this.audioInstance.currentTime);
-    },
-
-    secondsToTime(seconds) {
-      const date = new Date(0);
-      date.setSeconds(seconds);
-      return date.toISOString().substr(11, 8);
+      this.ACTION_PAUSE_TRACK();
     },
   },
 };
