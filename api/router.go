@@ -16,9 +16,9 @@ func NewAPIRouter(r *mux.Router, api API) {
 	publicAPI.Methods("GET", "OPTIONS").Path("/audio/playlists/{id}").HandlerFunc(api.GetPlaylistByID)
 
 	authorizedAPI := r.PathPrefix("/api").Subrouter()
+	authorizedAPI.Use(middleware.AllowCorsMiddleware)
 	authorizedAPI.Use(JwtAuthMiddleware)
 	authorizedAPI.Use(middleware.JsonTypeMiddleware)
-	authorizedAPI.Use(middleware.AllowCorsMiddleware)
 	authorizedAPI.Methods("POST", "OPTIONS").Path("/audio/tracks").HandlerFunc(api.AddTrack)
 	authorizedAPI.Methods("PUT", "OPTIONS").Path("/audio/tracks/{id}").HandlerFunc(api.UpdateTrackByID)
 	authorizedAPI.Methods("DELETE", "OPTIONS").Path("/audio/tracks/{id}").HandlerFunc(api.DeleteTrackByID)
