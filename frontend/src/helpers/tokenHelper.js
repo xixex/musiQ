@@ -10,7 +10,7 @@ export const checkIfAuthorised = () => {
       const accessToken = response.data.access_token;
       const refreshToken = response.data.refresh_token;
 
-      localStorage.setItem('access_token', accessToken);
+      localStorage.setItem('access_token', `Bearer ${accessToken}`);
       localStorage.setItem('refresh_token', refreshToken);
 
       return {

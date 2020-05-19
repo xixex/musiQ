@@ -6,11 +6,12 @@
       class="logo"
     >
     <template v-if="isAuthorised">
-      <div
-        class="sign-btn"
+      <img
+        alt=""
+        src="@/assets/logout.svg"
+        class="sign-btn logout"
         @click="logOut"
-        v-text="'Log Out'"
-      />
+      >
     </template>
 
     <template v-else>
@@ -70,18 +71,30 @@ export default {
     padding: 15px 0;
   }
 
-  .sign-btn{
-    width: max-content;
-    height: 100%;
-    justify-content: center;
-    text-align: center;
-    padding: 0 10px;
-    cursor: pointer;
-  }
-
   .logo{
     width: 100px;
     margin-right: auto;
     padding: 0 10px;
+  }
+
+  .logout{
+    width: 20px;
+  }
+
+  .sign-btn{
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    text-align: center;
+    padding: 0 15px;
+    margin-right: 10px;
+    width: 90px;
+    cursor: pointer;
+    font-size: 14px;
+    background: rgba(255,255,255,0.02);
+
+    &:hover{
+      background: rgba(255,255,255,0.1);
+    }
   }
 </style>

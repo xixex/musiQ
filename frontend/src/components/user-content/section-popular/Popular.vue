@@ -1,5 +1,6 @@
 <template>
   <div class="my-music">
+    <search-bar />
     <track-list
       :rel-path="relPath"
     />
@@ -8,10 +9,12 @@
 
 <script>
 import TrackList from '@/components/common/TrackList';
+import SearchBar from '@/components/user-content/SearchBar';
 
 export default {
   components: {
     TrackList,
+    SearchBar,
   },
 
   data() {

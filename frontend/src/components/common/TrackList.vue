@@ -48,7 +48,7 @@ export default {
     getTracks() {
       const config = {};
 
-      if (this.isAuthorised) {
+      if (this.isAuthorisedApi) {
         config.headers = {
           Authorization: localStorage.getItem('access_token'),
         };

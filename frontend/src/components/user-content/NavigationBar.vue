@@ -62,28 +62,32 @@ export default {
     position: absolute;
     top: 70px;
     bottom: 80px;
+    align-items: flex-start;
   }
 
   .nav-item{
     display: flex;
     box-sizing: border-box;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     height: 50px;
     width: 100%;
     padding: 20px;
     text-decoration: none;
     text-transform: uppercase;
-    background: linear-gradient(90deg, #FDFC47, #24FE41);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: white;
+    text-align: left;
+    white-space: nowrap;
+    font-size: 12px;
 
     &.router-link-active{
-      color: red;
+      border-bottom: 1px solid white;
+      color: #24FE41;
     }
   }
 
   .link-wrapper{
+    width: 100%;
 
     &:hover{
       background: rgba(255,255,255,0.02);

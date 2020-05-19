@@ -93,13 +93,19 @@ export default {
 <style lang="scss" scoped>
   .audio-row{
     width: 100%;
-    height: 40px;
+    height: 60px;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     cursor: pointer;
     color: white;
     font-size: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding: 10px 0;
+
+    &:hover{
+      opacity: 0.5;
+    }
   }
 
   .status-btn{
@@ -112,7 +118,7 @@ export default {
   .track-name{
     flex-direction: column;
     text-align: left;
-    padding: 0 5px;
+    padding: 0 12px;
   }
 
   .title{

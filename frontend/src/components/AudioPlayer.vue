@@ -55,6 +55,7 @@
         <div class="time-line">
           <input
             v-if="currentTrackObj"
+            :style="{background: `linear-gradient(90deg, #24FE41 0%, #FDFC47 ${currentTimePercent}%, #fff ${currentTimePercent}% , #fff 100%`}"
             :value="currentTrackObj.currentTime"
             type="range"
             class="range"
@@ -94,6 +95,10 @@ export default {
 
     durationString() {
       return secondsToTimeString(this.currentTrackObj.duration);
+    },
+
+    currentTimePercent() {
+      return this.currentTrackObj.currentTime / this.currentTrackObj.duration / 0.01;
     },
 
     playLogo() {
@@ -248,7 +253,6 @@ export default {
 
   .range {
     -webkit-appearance: none;
-    background: linear-gradient(90deg, #FDFC47, #24FE41);
     cursor: pointer;
     height: 3px;
     margin: 0;

@@ -35,7 +35,7 @@ export default {
   },
 
   actions: {
-    [ACTION_INIT_PLAYER_WITH_TRACK]: ({ state, commit }, { track }) => {
+    [ACTION_INIT_PLAYER_WITH_TRACK]: ({ state, commit, dispatch }, { track }) => {
       if (state.hls) {
         state.hls.destroy();
       }
@@ -61,6 +61,10 @@ export default {
             currentTime: state.currentTrackAudioInstance.currentTime,
           },
         });
+      };
+
+      state.currentTrackAudioInstance.onended = () => {
+        dispatch(ACTION_PLAY_NEXT_TRACK);
       };
     },
 
