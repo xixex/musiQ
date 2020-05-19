@@ -65,8 +65,9 @@ export default {
     flex-direction: row;
     box-sizing: border-box;
     width: 100%;
-    height: 50px;
+    height: 70px;
     justify-content: flex-end;
+    padding: 15px 0;
   }
 
   .sign-btn{

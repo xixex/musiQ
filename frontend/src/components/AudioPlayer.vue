@@ -20,6 +20,7 @@
           class="control-btn back-btn"
           src="@/assets/forward.svg"
           alt=""
+          @click="playPrevious"
         >
         <img
           class="control-btn play-btn"
@@ -31,6 +32,7 @@
           class="control-btn forward-btn"
           src="@/assets/forward.svg"
           alt=""
+          @click="playNext"
         >
       </div>
       <div
@@ -51,11 +53,16 @@
           </div>
         </div>
         <div class="time-line">
-          <div
+          <input
             v-if="currentTrackObj"
-            class="time-line-progress"
-            :style="{width: timeLineWidth}"
-          />
+            :value="currentTrackObj.currentTime"
+            type="range"
+            class="range"
+            min="0"
+            :max="currentTrackObj.duration"
+            step="1"
+            @input="setTime"
+          >
         </div>
       </div>
     </div>
@@ -63,14 +70,21 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapMutations, mapState } from 'vuex';
 import { secondsToTimeString } from '@/helpers/timeHelper';
-import { ACTION_PAUSE_TRACK, ACTION_PLAY_TRACK } from '@/store/modules/player';
+import {
+  ACTION_PAUSE_TRACK,
+  ACTION_PLAY_TRACK,
+  ACTION_PLAY_NEXT_TRACK,
+  ACTION_PLAY_PREV_TRACK,
+  MUTATION_SET_TRACK_MOMENT,
+} from '@/store/modules/player';
 
 export default {
   computed: {
     ...mapState({
       currentTrackObj: (state) => state.player.currentTrackObj,
+      currentTrackAudioInstance: (state) => state.player.currentTrackAudioInstance,
       isPlaying: (state) => state.player.isPlaying,
     }),
 
@@ -85,16 +99,18 @@ export default {
     playLogo() {
       return this.isPlaying ? require('@/assets/pause.svg') : require('@/assets/play.svg');
     },
-
-    timeLineWidth() {
-      return `${this.currentTrackObj.currentTime / this.currentTrackObj.duration / 0.01}%`;
-    },
   },
 
   methods: {
     ...mapActions({
       ACTION_PAUSE_TRACK,
       ACTION_PLAY_TRACK,
+      ACTION_PLAY_NEXT_TRACK,
+      ACTION_PLAY_PREV_TRACK,
+    }),
+
+    ...mapMutations({
+      MUTATION_SET_TRACK_MOMENT,
     }),
 
     playPause() {
@@ -110,6 +126,18 @@ export default {
     pauseTrack() {
       this.ACTION_PAUSE_TRACK();
     },
+
+    playNext() {
+      this.ACTION_PLAY_NEXT_TRACK();
+    },
+
+    playPrevious() {
+      this.ACTION_PLAY_PREV_TRACK();
+    },
+
+    setTime(event) {
+      this.MUTATION_SET_TRACK_MOMENT({ time: event.target.value });
+    },
   },
 };
 </script>
@@ -124,7 +152,7 @@ export default {
     color: white;
     font-size: 14px;
     background: rgba(21,21,24);
-    padding: 15px 0;
+    padding: 5px 15px;
   }
 
   .player-content{
@@ -206,16 +234,38 @@ export default {
   }
 
   .author{
-    width: 100px;
+    width: max-content;
+    max-width: 100px;
     font-weight: bold;
     white-space: nowrap;
     overflow: hidden;
   }
 
-  .time-line-progress{
-    height: 100%;
-    background-image: linear-gradient(90deg, #ee0979, #ff6a00);
+  .range{
+    width: 100%;
+
   }
+
+  .range {
+    -webkit-appearance: none;
+    background: linear-gradient(90deg, #FDFC47, #24FE41);
+    cursor: pointer;
+    height: 3px;
+    margin: 0;
+    border-radius: 2px;
+    width: 100%;
+    outline: none;
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 12px;
+      width: 12px;
+      border-radius: 50%;
+      background: #ffffff;
+      cursor: pointer;
+    }
+  }
+
 
   @media only screen and (max-width: 1440px) {
 

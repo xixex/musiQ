@@ -5,7 +5,7 @@ import Playlists from '@/components/user-content/section-playlists/Playlists';
 import Popular from '@/components/user-content/section-popular/Popular';
 import Recent from '@/components/user-content/section-recent/Recent';
 import axios from 'axios';
-import { ACTIONS_SIGN_OUT, MUTATION_SIGN_IN } from '@/store/modules/auth';
+import { checkIfAuthorised } from '@/helpers/tokenHelper';
 
 Vue.use(VueRouter);
 
@@ -13,10 +13,28 @@ const routes = [
   {
     path: '/my-music',
     component: MyMusic,
+    beforeEnter: (to, from, next) => {
+      checkIfAuthorised()
+        .then(() => {
+          next();
+        })
+        .catch(() => {
+          next('/popular');
+        });
+    },
   },
   {
     path: '/playlists',
     component: Playlists,
+    beforeEnter: (to, from, next) => {
+      checkIfAuthorised()
+        .then(() => {
+          next();
+        })
+        .catch(() => {
+          next('/popular');
+        });
+    },
   },
   {
     path: '/popular',
@@ -25,7 +43,17 @@ const routes = [
   {
     path: '/recent',
     component: Recent,
+    beforeEnter: (to, from, next) => {
+      checkIfAuthorised()
+        .then(() => {
+          next();
+        })
+        .catch(() => {
+          next('/popular');
+        });
+    },
   },
+  { path: '*', redirect: '/popular' },
 ];
 
 const router = new VueRouter({

@@ -2,6 +2,7 @@ import Hls from 'hls.js';
 
 export const MUTATION_SET_CURRENT_TRACK_OBJ = 'MUTATION_SET_CURRENT_TRACK_OBJ';
 export const MUTATION_SET_ALL_TRACKS = 'MUTATION_SET_ALL_TRACKS';
+export const MUTATION_SET_TRACK_MOMENT = 'MUTATION_SET_TRACK_MOMENT';
 
 export const ACTION_INIT_PLAYER_WITH_TRACK = 'ACTION_INIT_PLAYER_WITH_TRACK';
 export const ACTION_PLAY_TRACK = 'ACTION_PLAY_TRACK';
@@ -27,6 +28,10 @@ export default {
     [MUTATION_SET_ALL_TRACKS](state, { tracks }) {
       state.allTracks = tracks;
     },
+
+    [MUTATION_SET_TRACK_MOMENT](state, { time }) {
+      state.currentTrackAudioInstance.currentTime = time;
+    },
   },
 
   actions: {
@@ -37,9 +42,9 @@ export default {
 
       state.currentTrackObj = track;
       state.currentTrackObj.duration = 0;
-      const audioSrc = `http://localhost:8080/media/${state.currentTrackObj.id}/stream/`;
+      const audioSrc = `${window.hostname}/media/${state.currentTrackObj.id}/stream/`;
       state.currentTrackAudioInstance = new Audio(audioSrc);
-      state.hls = new Hls();
+      state.hls = new Hls({ maxBufferLength: 10 });
       state.hls.loadSource(audioSrc);
       state.hls.attachMedia(state.currentTrackAudioInstance);
 

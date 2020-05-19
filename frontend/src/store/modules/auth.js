@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { checkIfAuthorised } from '@/helpers/tokenHelper';
 
 export const MUTATION_SIGN_IN = 'MUTATION_SIGN_IN';
 export const MUTATION_SIGN_OUT = 'MUTATION_SIGN_OUT';
@@ -29,7 +30,7 @@ export default {
 
   actions: {
     [ACTION_SIGN_UP]({ dispatch }, { email, name, password }) {
-      return axios.post('http://localhost:8080/auth/signup', {
+      return axios.post(`${window.hostname}/auth/signup`, {
         email,
         name,
         password,
@@ -40,7 +41,7 @@ export default {
     },
 
     [ACTION_SIGN_IN]({ commit }, { email, password }) {
-      return axios.post('http://localhost:8080/auth/signin', {
+      return axios.post(`${window.hostname}/auth/signin`, {
         email,
         password,
       })
@@ -55,7 +56,7 @@ export default {
     [ACTIONS_SIGN_OUT]({ commit }) {
       const refreshToken = localStorage.getItem('refresh_token');
 
-      return axios.delete('http://localhost:8080/auth/signout', {
+      return axios.delete(`${window.hostname}/auth/signout`, {
         data: {
           refresh_token: refreshToken,
         },
@@ -66,15 +67,11 @@ export default {
     },
 
     [ACTION_CHECK_IF_AUTHORIZED]({ commit }) {
-      const refreshToken = localStorage.getItem('refresh_token');
-
-      return axios.post('http://localhost:8080/auth/refresh-token', {
-        refresh_token: refreshToken,
-      })
-        .then((response) => {
+      return checkIfAuthorised()
+        .then((data) => {
           commit(MUTATION_SIGN_IN, {
-            accessToken: response.data.access_token,
-            refreshToken: response.data.refresh_token,
+            accessToken: data.accessToken,
+            refreshToken: data.refreshToken,
           });
         })
         .catch(() => {

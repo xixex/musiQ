@@ -4,14 +4,13 @@
       @showSignIn="showSignIn"
       @showSignUp="showSignUp"
     />
+    <navigation-bar />
     <user-content />
     <audio-player />
-
     <sign-in-form
       v-if="isShowSignIn"
       @close="hideSignIn"
     />
-
     <sign-up-form
       v-if="isShowSignUp"
       @close="hideSignUp"
@@ -27,10 +26,12 @@ import SignInForm from '@/components/page-header/SignInForm';
 import SignUpForm from '@/components/page-header/SignUpForm';
 import { mapActions } from 'vuex';
 import { ACTION_CHECK_IF_AUTHORIZED } from '@/store/modules/auth';
+import NavigationBar from '@/components/user-content/NavigationBar';
 
 export default {
 
   components: {
+    NavigationBar,
     UserContent,
     PageHeader,
     AudioPlayer,
