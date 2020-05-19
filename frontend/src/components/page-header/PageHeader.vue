@@ -31,7 +31,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex';
-import { ACTIONS_SIGN_OUT } from '@/store/modules/auth';
+import { ACTION_SIGN_OUT } from '@/store/modules/auth';
 
 
 export default {
@@ -51,11 +51,11 @@ export default {
     },
 
     logOut() {
-      this.ACTIONS_SIGN_OUT();
+      this.ACTION_SIGN_OUT();
     },
 
     ...mapActions({
-      ACTIONS_SIGN_OUT,
+      ACTION_SIGN_OUT,
     }),
   },
 };

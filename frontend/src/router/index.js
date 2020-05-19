@@ -19,6 +19,7 @@ const routes = [
           next();
         })
         .catch(() => {
+          console.log('aaa')
           next('/popular');
         });
     },

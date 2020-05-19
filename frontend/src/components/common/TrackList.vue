@@ -56,8 +56,6 @@ export default {
 
       axios.get(`${window.hostname}${this.relPath}`, config)
         .then((res) => {
-          console.log(`${window.hostname}${this.relPath}`);
-          console.log(res);
           this.tracks = this.prepareTracks(res.data);
         });
     },

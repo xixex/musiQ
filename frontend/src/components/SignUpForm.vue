@@ -81,6 +81,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "~assets/main.scss";
 
   .box {
     position: absolute;
@@ -135,7 +136,7 @@ export default {
   .box .inputBox input:not([value=""]) ~ label {
     top: -1.125rem;
     left: 0;
-    color: #03a9f4;
+    color: $green-color;
     font-size: 0.75rem;
   }
 
@@ -143,7 +144,7 @@ export default {
     border: none;
     outline: none;
     color: black;
-    background: linear-gradient(90deg, #FDFC47, #24FE41);
+    background: linear-gradient(90deg, $green-color, $green-color2);
     padding: 0.625rem 1.25rem;
     cursor: pointer;
     border-radius: 0.312rem;

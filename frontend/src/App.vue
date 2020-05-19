@@ -5,7 +5,7 @@
       @showSignUp="showSignUp"
     />
     <navigation-bar />
-    <user-content />
+    <user-content @openNewTrackForm="showNewTrackForm" />
     <audio-player />
     <sign-in-form
       v-if="isShowSignIn"
@@ -15,6 +15,10 @@
       v-if="isShowSignUp"
       @close="hideSignUp"
     />
+    <new-track-form
+      v-if="isShowNewTrackForm"
+      @close="hideNewTrackForm"
+    />
   </div>
 </template>
 
@@ -22,15 +26,17 @@
 import UserContent from '@/components/user-content/UserContent';
 import AudioPlayer from '@/components/AudioPlayer';
 import PageHeader from '@/components/page-header/PageHeader';
-import SignInForm from '@/components/page-header/SignInForm';
-import SignUpForm from '@/components/page-header/SignUpForm';
+import SignInForm from '@/components/SignInForm';
+import SignUpForm from '@/components/SignUpForm';
 import { mapActions } from 'vuex';
 import { ACTION_CHECK_IF_AUTHORIZED } from '@/store/modules/auth';
 import NavigationBar from '@/components/user-content/NavigationBar';
+import NewTrackForm from '@/components/NewTrackForm';
 
 export default {
 
   components: {
+    NewTrackForm,
     NavigationBar,
     UserContent,
     PageHeader,
@@ -43,6 +49,7 @@ export default {
     return {
       isShowSignIn: false,
       isShowSignUp: false,
+      isShowNewTrackForm: false,
     };
   },
 
@@ -65,6 +72,14 @@ export default {
 
     hideSignUp() {
       this.isShowSignUp = false;
+    },
+
+    showNewTrackForm() {
+      this.isShowNewTrackForm = true;
+    },
+
+    hideNewTrackForm() {
+      this.isShowNewTrackForm = false;
     },
 
     ...mapActions({

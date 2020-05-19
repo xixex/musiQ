@@ -55,7 +55,7 @@
         <div class="time-line">
           <input
             v-if="currentTrackObj"
-            :style="{background: `linear-gradient(90deg, #24FE41 0%, #FDFC47 ${currentTimePercent}%, #fff ${currentTimePercent}% , #fff 100%`}"
+            :style="{background: `linear-gradient(90deg, #00FF01 0%, #24FE41 ${currentTimePercent}%, #fff ${currentTimePercent}% , #fff 100%`}"
             :value="currentTrackObj.currentTime"
             type="range"
             class="range"

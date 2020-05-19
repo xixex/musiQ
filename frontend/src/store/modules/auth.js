@@ -6,7 +6,7 @@ export const MUTATION_SIGN_OUT = 'MUTATION_SIGN_OUT';
 
 export const ACTION_SIGN_UP = 'ACTION_SIGN_UP';
 export const ACTION_SIGN_IN = 'ACTION_SIGN_IN';
-export const ACTIONS_SIGN_OUT = 'ACTIONS_SIGN_OUT';
+export const ACTION_SIGN_OUT = 'ACTION_SIGN_OUT';
 export const ACTION_CHECK_IF_AUTHORIZED = 'ACTION_CHECK_IF_AUTHORIZED';
 
 export default {
@@ -53,7 +53,7 @@ export default {
         });
     },
 
-    [ACTIONS_SIGN_OUT]({ commit }) {
+    [ACTION_SIGN_OUT]({ commit }) {
       const refreshToken = localStorage.getItem('refresh_token');
 
       return axios.delete(`${window.hostname}/auth/signout`, {
@@ -66,7 +66,7 @@ export default {
         });
     },
 
-    [ACTION_CHECK_IF_AUTHORIZED]({ commit }) {
+    [ACTION_CHECK_IF_AUTHORIZED]({ commit, dispatch }) {
       return checkIfAuthorised()
         .then((data) => {
           commit(MUTATION_SIGN_IN, {
@@ -75,7 +75,7 @@ export default {
           });
         })
         .catch(() => {
-          commit(ACTIONS_SIGN_OUT);
+          dispatch(ACTION_SIGN_OUT);
         });
     },
   },
