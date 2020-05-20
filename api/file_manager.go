@@ -188,6 +188,9 @@ func (m FileManager) Delete(w http.ResponseWriter, id string) error {
 func (m FileManager) DeleteCoverPic(w http.ResponseWriter, picLoc string, id string) error {
 	err := os.Remove(fmt.Sprintf("%s/%s/%s", m.baseLocation, picLoc, id))
 	if err != nil {
+		if err.Error() == fmt.Sprintf("remove %s/%s/%s: no such file or directory", m.baseLocation, picLoc, id) {
+			return nil
+		}
 		writeError(w, 400, DeleteCoverPicError, fmt.Errorf("error while deleting cover pic: %v", err))
 		return err
 	}
