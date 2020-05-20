@@ -2,44 +2,51 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f6343aa-7473-4b7d-a8ba-4bbfa176b8b7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/.browserslistrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/.eslintrc.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/babel.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/jest.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/img/icons/android-chrome-192x192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/img/icons/android-chrome-512x512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/img/icons/android-chrome-maskable-192x192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/img/icons/android-chrome-maskable-512x512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/img/icons/apple-touch-icon-120x120.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/img/icons/apple-touch-icon-152x152.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/img/icons/apple-touch-icon-180x180.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/img/icons/apple-touch-icon-60x60.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/img/icons/apple-touch-icon-76x76.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/img/icons/apple-touch-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/img/icons/favicon-16x16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/img/icons/favicon-32x32.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/img/icons/msapplication-icon-144x144.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/img/icons/mstile-150x150.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/img/icons/safari-pinned-tab.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/common/Modal.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/page-header/SignInForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/page-header/SignUpForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/store/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/About.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/Home.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/tests/unit/example.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/vue.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/addplaylist.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/check.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/check2.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/delete.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/main.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/upload.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/ListenPlaylistForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/NewPlaylistForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/NewTrackForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/SignInForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/SignUpForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/common/PlaylistCard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/common/PlaylistList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/user-content/section-playlists/ListenPlaylistForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/store/modules/playlists.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/store/modules/popularMusic.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/assets/check.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/assets/check.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/assets/logout.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/assets/logout.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/assets/pause.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/assets/pause.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/assets/play.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/assets/play.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/AudioPlayer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AudioPlayer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/NewTrackForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/NewTrackForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/SignInForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SignInForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/common/AudioRow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/common/AudioRow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/common/Modal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/common/Modal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/common/TrackList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/common/TrackList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/page-header/PageHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/page-header/PageHeader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/page-header/SignInForm.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/page-header/SignUpForm.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/user-content/NavigationBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/user-content/NavigationBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/user-content/SearchBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/user-content/SearchBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/user-content/UserContent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/user-content/UserContent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/user-content/section-my-music/MyMusic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/user-content/section-my-music/MyMusic.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/user-content/section-playlists/Playlists.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/user-content/section-playlists/Playlists.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/user-content/section-popular/Popular.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/user-content/section-popular/Popular.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/helpers/timeHelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/helpers/timeHelper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/helpers/tokenHelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/helpers/tokenHelper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/modules/myMusic.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/modules/myMusic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/modules/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/modules/player.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Home.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +68,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -97,6 +104,7 @@
       <workItem from="1589552219062" duration="294000" />
       <workItem from="1589552707430" duration="78000" />
       <workItem from="1589552799504" duration="146000" />
+      <workItem from="1590007368540" duration="548000" />
     </task>
     <servers />
   </component>

@@ -16,10 +16,10 @@ export default {
 
 <style lang="scss" scoped>
   .search{
-    height: 50px;
+    height: 35px;
     justify-content: center;
     align-items: flex-start;
-    padding: 20px;
+    padding: 0 10px;
     width: 100%;
     box-sizing: border-box;
     background: transparent;
@@ -28,6 +28,7 @@ export default {
     border-radius: 5px;
     margin: 10px 0;
     color: white;
-    font-size: 20px;
+    font-size: 14px;
+    flex-shrink: 0;
   }
 </style>

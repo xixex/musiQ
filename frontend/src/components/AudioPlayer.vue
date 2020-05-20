@@ -158,6 +158,7 @@ export default {
     font-size: 14px;
     background: rgba(21,21,24);
     padding: 5px 15px;
+    z-index: 1000;
   }
 
   .player-content{

@@ -1,44 +1,27 @@
 <template>
   <modal @close="closeForm">
     <div class="box">
-      <h2>Add new Track</h2>
+      <h2>Create Playlist</h2>
       <form
-        ref="newTrack"
-        @submit.prevent="uploadTrack"
+        ref="newPlaylist"
+        class="form"
+        @submit.prevent="addPlaylist"
       >
-        <template v-if="isFileUploaded">
-          <div class="inputBox">
-            <input
-              v-model="author"
-              name="author"
-              value=""
-            >
-            <label>Author</label>
-          </div>
-          <div class="inputBox">
-            <input
-              v-model="title"
-              name="title"
-              value=""
-            >
-            <label>Title</label>
-          </div>
-        </template>
-        <div class="button-wrapper">
-          <span
-            class="label"
-            v-text="uploadFilePlaceholder"
-          />
+        <div class="inputBox">
           <input
-            id="upload"
-            required
-            type="file"
-            name="audiofile"
-            class="upload-box"
-            placeholder="Upload File"
-            @change="fileUploadedFromComputer"
+            v-model="title"
+            name="title"
+            value=""
           >
+          <label>Title</label>
         </div>
+        <track-list
+          class="track-list"
+          :is-pickable="true"
+          :tracks="allMyTracks"
+          @pickTrack="pickTrack"
+          @unpickTrack="unpickTrack"
+        />
         <input
           :disabled="isButtonDisabled"
           type="submit"
@@ -53,57 +36,65 @@
 
 <script>
 
-import { mapActions } from 'vuex';
 import Modal from '@/components/common/Modal';
-import { ACTION_SIGN_UP } from '@/store/modules/auth';
-import axios from 'axios';
-import { ACTION_ADD_NEW_TRACK } from '@/store/modules/popularMusic';
+import TrackList from '@/components/common/TrackList';
+import { mapActions, mapState } from 'vuex';
+import { ACTION_CREATE_NEW_PLAYLIST } from '@/store/modules/playlists';
+import { ACTION_UPDATE_ALL_MY_TRACKS } from '@/store/modules/myMusic';
 
 export default {
   components: {
+    TrackList,
     Modal,
   },
 
   data() {
     return {
-      author: '',
-      title: '',
-      audiofile: null,
-      isFileUploaded: false,
-      isButtonDisabled: true,
-      uploadFilePlaceholder: 'Upload audio',
+      title: 'New Playlist',
+      isButtonDisabled: false,
+      tracksToAdd: [],
     };
+  },
+
+  computed: {
+    ...mapState({
+      allMyTracks: (state) => state.myMusic.allMyTracks,
+    }),
+  },
+
+  mounted() {
+    this.ACTION_UPDATE_ALL_MY_TRACKS();
   },
 
   methods: {
     ...mapActions({
-      ACTION_SIGN_UP,
-      ACTION_ADD_NEW_TRACK,
+      ACTION_CREATE_NEW_PLAYLIST,
+      ACTION_UPDATE_ALL_MY_TRACKS,
     }),
 
-    uploadTrack() {
-      this.isButtonDisabled = true;
-      const track = new FormData(this.$refs.newTrack);
-
-      this.ACTION_ADD_NEW_TRACK({ track })
-        .then(() => {
-          this.closeForm();
-        });
+    pickTrack(id) {
+      this.tracksToAdd.push(id);
     },
 
-    fileUploadedFromComputer(event) {
-      this.isFileUploaded = true;
-      this.isButtonDisabled = false;
-      this.audiofile = event.target.files[0];
-
-      const [author, title] = this.audiofile.name.slice(0, -4).split('-');
-      this.author = author.trim();
-      this.title = title.trim();
-      this.uploadFilePlaceholder = event.target.files[0].name;
+    unpickTrack(id) {
+      this.tracksToAdd = this.tracksToAdd.filter((e) => e !== id);
     },
 
     closeForm() {
       this.$emit('close');
+    },
+
+    addPlaylist() {
+      this.isButtonDisabled = true;
+
+      const formData = new FormData(this.$refs.newPlaylist);
+
+      formData.append('tracklist', JSON.stringify(this.tracksToAdd));
+
+      this.ACTION_CREATE_NEW_PLAYLIST({ playlist: formData })
+        .then(() => {
+          this.closeForm();
+        });
     },
   },
 };
@@ -118,7 +109,8 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 25rem;
+    width: 600px;
+    height: 100%;
     padding: 2.5rem;
     box-sizing: border-box;
     background: rgba(0, 0, 0, 0.6);
@@ -224,5 +216,22 @@ export default {
   .button-ok:disabled{
     cursor: default !important;
     opacity: 0.2;
+  }
+
+  .form{
+    height: 100%;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .track-list{
+    position: absolute;
+    top: 60px;
+    bottom: 60px;
+    width: 100%;
+    overflow: scroll;
   }
 </style>

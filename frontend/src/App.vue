@@ -5,7 +5,10 @@
       @showSignUp="showSignUp"
     />
     <navigation-bar />
-    <user-content @openNewTrackForm="showNewTrackForm" />
+    <user-content
+      @openNewTrackForm="showNewTrackForm"
+      @openNewPlaylistForm="showNewPlaylistForm"
+    />
     <audio-player />
     <sign-in-form
       v-if="isShowSignIn"
@@ -18,6 +21,10 @@
     <new-track-form
       v-if="isShowNewTrackForm"
       @close="hideNewTrackForm"
+    />
+    <new-playlist-form
+      v-if="isShowNewPlaylistForm"
+      @close="hideNewPlaylistForm"
     />
   </div>
 </template>
@@ -32,11 +39,13 @@ import { mapActions, mapState } from 'vuex';
 import { ACTION_CHECK_IF_AUTHORIZED } from '@/store/modules/auth';
 import NavigationBar from '@/components/user-content/NavigationBar';
 import NewTrackForm from '@/components/NewTrackForm';
-import { ACTION_GET_ALL_MY_TRACKS } from '@/store/modules/myMusic';
+import { ACTION_UPDATE_ALL_MY_TRACKS } from '@/store/modules/myMusic';
+import NewPlaylistForm from '@/components/NewPlaylistForm';
 
 export default {
 
   components: {
+    NewPlaylistForm,
     NewTrackForm,
     NavigationBar,
     UserContent,
@@ -51,6 +60,7 @@ export default {
       isShowSignIn: false,
       isShowSignUp: false,
       isShowNewTrackForm: false,
+      isShowNewPlaylistForm: false,
     };
   },
 
@@ -64,8 +74,7 @@ export default {
     this.ACTION_CHECK_IF_AUTHORIZED()
       .then(() => {
         if (this.isAuthorised) {
-          console.log('aaa');
-          this.ACTION_GET_ALL_MY_TRACKS();
+          this.ACTION_UPDATE_ALL_MY_TRACKS();
         }
       });
   },
@@ -95,9 +104,17 @@ export default {
       this.isShowNewTrackForm = false;
     },
 
+    showNewPlaylistForm() {
+      this.isShowNewPlaylistForm = true;
+    },
+
+    hideNewPlaylistForm() {
+      this.isShowNewPlaylistForm = false;
+    },
+
     ...mapActions({
       ACTION_CHECK_IF_AUTHORIZED,
-      ACTION_GET_ALL_MY_TRACKS,
+      ACTION_UPDATE_ALL_MY_TRACKS,
     }),
   },
 };

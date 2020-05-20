@@ -1,18 +1,24 @@
 <template>
   <div class="user-content">
-    <search-bar />
     <div class="user-controls">
-      <img
-        class="upload-logo"
-        src="@/assets/addplaylist.svg"
-        alt=""
-      >
-      <img
-        :src="require('@/assets/upload.svg')"
-        class="upload-logo"
-        alt=""
-        @click="openNewTrackForm"
-      >
+      <h2
+        class="header-text"
+        v-text="headerText"
+      />
+      <template v-if="isAuthorised">
+        <img
+          class="upload-logo"
+          src="@/assets/addplaylist.svg"
+          alt=""
+          @click="openNewPlaylistForm"
+        >
+        <img
+          :src="require('@/assets/upload.svg')"
+          class="upload-logo"
+          alt=""
+          @click="openNewTrackForm"
+        >
+      </template>
     </div>
     <router-view />
   </div>
@@ -20,12 +26,32 @@
 
 <script>
 
-import SearchBar from '@/components/user-content/SearchBar';
+import { mapState } from 'vuex';
 
 export default {
   components: {
-    SearchBar,
 
+  },
+
+  computed: {
+    ...mapState({
+      isAuthorised: (state) => state.auth.isAuthorised,
+    }),
+
+    headerText() {
+      switch (this.$route.path) {
+        case '/my-music':
+          return 'My music';
+        case '/playlists':
+          return 'My Playlists';
+        case '/recent':
+          return 'Recently Listened';
+        case '/popular':
+          return 'Popular';
+        default:
+          return '';
+      }
+    },
   },
 
   methods: {
@@ -46,7 +72,11 @@ export default {
     width: 50vw;
     position: absolute;
     top: 70px;
-    bottom: 80px;
+    bottom: 90px;
+  }
+
+  .header-text{
+    margin-right: auto;
   }
 
   .user-controls{
@@ -54,12 +84,14 @@ export default {
     border-bottom: 1px solid white;
     height: 50px;
     justify-content: flex-end;
+    align-items: center;
+    padding: 0 12px;
   }
 
   .upload-logo{
     align-self: center;
     width: 24px;
-    padding: 0 6px;
+    margin-left: 14px;
     cursor: pointer;
 
     &:hover{

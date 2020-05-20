@@ -30,7 +30,7 @@ export default {
     height: 100%;
     top: 0;
     left: 0;
-    background-color: rgba(black, 0.75);
+    background-color: rgba(black, 0.8);
     z-index: -1;
   }
 

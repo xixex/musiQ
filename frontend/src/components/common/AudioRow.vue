@@ -22,20 +22,35 @@
       v-if="isAuthorised"
       class="audio-controls"
     >
-      <img
-        v-if="isAdded"
-        class="delete-btn control"
-        :src="deleteIcon"
-        alt=""
-        @click.stop="removeAudio"
-      >
-      <img
-        v-else
-        class="add-btn control"
-        src="@/assets/delete.svg"
-        alt=""
-        @click.stop="addAudio"
-      >
+      <template v-if="isAddable">
+        <img
+          v-if="isAdded"
+          class="delete-btn control"
+          :src="deleteIcon"
+          alt=""
+          @click.stop="removeAudio"
+        >
+        <img
+          v-else
+          class="add-btn control"
+          src="@/assets/delete.svg"
+          alt=""
+          @click.stop="addAudio"
+        >
+      </template>
+      <template v-if="isPickable">
+        <div
+          :class="['pick-circle', {'picked' : isPicked}]"
+          @click.stop="togglePick"
+        >
+          <img
+            v-if="isPicked"
+            class="pick-check"
+            src="@/assets/check.svg"
+            alt=""
+          >
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -66,11 +81,22 @@ export default {
       required: false,
       default: false,
     },
+
+    isPickable: {
+      required: false,
+      default: false,
+    },
+
+    isAddable: {
+      required: false,
+      default: false,
+    },
   },
 
   data() {
     return {
       isAdded: false,
+      isPicked: false,
     };
   },
 
@@ -136,6 +162,16 @@ export default {
       this.ACTION_PAUSE_TRACK();
     },
 
+    togglePick() {
+      if (!this.isPicked) {
+        this.$emit('pickTrack', this.track.id);
+        this.isPicked = true;
+      } else {
+        this.$emit('unpickTrack', this.track.id);
+        this.isPicked = false;
+      }
+    },
+
     removeAudio() {
       const config = {
         headers: {
@@ -149,7 +185,6 @@ export default {
 
       axios.patch(`${window.hostname}/api/audio/user-list/remove`, data, config)
         .then(() => {
-          this.$emit('forceUpdate');
           this.isAdded = false;
         });
     },
@@ -167,7 +202,6 @@ export default {
 
       axios.patch(`${window.hostname}/api/audio/user-list/add`, data, config)
         .then(() => {
-          this.$emit('forceUpdate');
           this.isAdded = true;
         });
     },
@@ -182,6 +216,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "~assets/main.scss";
+
   .audio-row{
     width: 100%;
     height: 60px;
@@ -239,6 +275,27 @@ export default {
     &:hover{
       transform: scale(1.4) rotate(45deg);
     }
+  }
+
+  .pick-circle{
+    border: 1px solid white;
+    width: 20px;
+    height: 20px;
+    margin-left: 12px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover{
+      transform: scale(1.2);
+    }
+  }
+
+  .pick-check{
+    width: 100%;
+    margin-left: 4px;
+    margin-bottom: 4px;
   }
 
 </style>

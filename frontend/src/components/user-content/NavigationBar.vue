@@ -79,6 +79,7 @@ export default {
     text-align: left;
     white-space: nowrap;
     font-size: 12px;
+    font-weight: bold;
 
     &.router-link-active{
       border-bottom: 1px solid white;

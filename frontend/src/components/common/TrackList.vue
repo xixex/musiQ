@@ -1,99 +1,71 @@
 <template>
   <div class="tracklist">
-    <div
-      v-for="(track,i) in tracks"
-      :key="i"
-    >
-      <audio-row
-        :track="track"
-        :all-tracks="tracks"
-        :is-my-music="isMyMusic"
-        @forceUpdate="getTracks"
-      />
+    <search-bar />
+    <div class="list-wrapper">
+      <div
+        v-for="(track,i) in tracks"
+        :key="i"
+      >
+        <audio-row
+          :track="track"
+          :all-tracks="tracks"
+          :is-my-music="isMyMusic"
+          :is-pickable="isPickable"
+          :is-addable="isAddable"
+          @pickTrack="pickTrack"
+          @unpickTrack="unpickTrack"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
 import AudioRow from '@/components/common/AudioRow';
 import { mapMutations } from 'vuex';
 import { MUTATION_SET_ALL_MY_TRACKS } from '@/store/modules/myMusic';
-
+import SearchBar from '@/components/user-content/SearchBar';
 
 export default {
   components: {
+    SearchBar,
     AudioRow,
   },
 
   props: {
-    relPath: {
+    tracks: {
       required: true,
-      default: '',
-    },
-
-    isAuthorisedApi: {
-      required: false,
-      default: false,
+      default: null,
     },
 
     isMyMusic: {
       required: false,
       default: false,
     },
+
+    isPickable: {
+      required: false,
+      default: false,
+    },
+
+    isAddable: {
+      required: false,
+      default: false,
+    },
   },
 
-  data() {
-    return {
-      tracks: null,
-      audio: null,
-    };
-  },
-
-  mounted() {
-    this.getTracks();
-  },
 
   methods: {
     ...mapMutations({
       MUTATION_SET_ALL_MY_TRACKS,
     }),
 
-    getTracks() {
-      const config = {};
-
-      if (this.isAuthorisedApi) {
-        config.headers = {
-          Authorization: localStorage.getItem('access_token'),
-        };
-      }
-
-      axios.get(`${window.hostname}${this.relPath}`, config)
-        .then((res) => {
-          this.tracks = this.prepareTracks(res.data);
-
-          if (this.isMyMusic) {
-            this.MUTATION_SET_ALL_MY_TRACKS({ tracks: this.tracks });
-          }
-        });
+    pickTrack(id) {
+      this.$emit('pickTrack', id);
     },
 
-    prepareTracks(tracks) {
-      const preparedTracks = [...tracks];
-
-      for (let i = 0; i < preparedTracks.length; i++) {
-        preparedTracks[i].duration = 0;
-        preparedTracks[i].currentTime = 0;
-        preparedTracks[i].nextTrack = preparedTracks[i + 1];
-        preparedTracks[i].previousTrack = preparedTracks[i - 1];
-      }
-
-      if (preparedTracks.length > 0) {
-        preparedTracks[0].previousTrack = preparedTracks[preparedTracks.length - 1];
-        preparedTracks[preparedTracks.length - 1].nextTrack = preparedTracks[0];
-      }
-
-      return preparedTracks;
+    unpickTrack(id) {
+      this.$emit('unpickTrack', id);
     },
   },
 };
@@ -103,6 +75,11 @@ export default {
   .tracklist{
     display: flex;
     flex-direction: column;
+  }
+
+  .list-wrapper{
+    flex-direction: column;
+    overflow: scroll;
   }
 
 </style>

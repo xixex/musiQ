@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { prepareTracksNextPrev } from '@/helpers/tracksHelper';
 
 export const MUTATION_SET_ALL_MY_TRACKS = 'MUTATION_SET_ALL_MY_TRACKS';
 
-export const ACTION_GET_ALL_MY_TRACKS = 'MUTATION_SET_ALL_MY_TRACKS';
+export const ACTION_UPDATE_ALL_MY_TRACKS = 'MUTATION_SET_ALL_MY_TRACKS';
 
 export default {
   state: () => ({
@@ -16,16 +17,17 @@ export default {
   },
 
   actions: {
-    [ACTION_GET_ALL_MY_TRACKS]: ({ commit }) => {
+    [ACTION_UPDATE_ALL_MY_TRACKS]: ({ commit }) => {
       const config = {
         headers: {
           Authorization: localStorage.getItem('access_token'),
         },
       };
 
-      axios.get(`${window.hostname}/api/audio/user-list`, config)
+      return axios.get(`${window.hostname}/api/audio/user-list`, config)
         .then((res) => {
-          const tracks = res.data;
+          const tracks = prepareTracksNextPrev(res.data);
+
           commit(MUTATION_SET_ALL_MY_TRACKS, { tracks });
         });
     },
