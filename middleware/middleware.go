@@ -14,7 +14,7 @@ func JsonTypeMiddleware(next http.Handler) http.Handler {
 func AllowCorsMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Add("Access-Control-Allow-Origin", r.Header.Get("Origin"))
-		w.Header().Add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		w.Header().Add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS")
 		w.Header().Add("Access-Control-Allow-Headers", "content-type, authorization")
 		if r.Method == "OPTIONS" {
 			w.WriteHeader(200)
