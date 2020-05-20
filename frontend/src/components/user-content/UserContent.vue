@@ -1,5 +1,6 @@
 <template>
   <div class="user-content">
+    <search-bar />
     <div class="user-controls">
       <img
         :src="require('@/assets/upload.svg')"
@@ -14,8 +15,11 @@
 
 <script>
 
+import SearchBar from '@/components/user-content/SearchBar';
+
 export default {
   components: {
+    SearchBar,
 
   },
 
@@ -35,7 +39,7 @@ export default {
 
   .user-controls{
     flex-direction: row;
-    border: 1px solid white;
+    border-bottom: 1px solid white;
     height: 50px;
   }
 
@@ -45,5 +49,9 @@ export default {
     margin-left: auto;
     padding: 12px;
     cursor: pointer;
+
+    &:hover{
+      transform: scale(1.1);
+    }
   }
 </style>

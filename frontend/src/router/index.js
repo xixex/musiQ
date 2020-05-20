@@ -19,7 +19,7 @@ const routes = [
           next();
         })
         .catch(() => {
-          console.log('aaa')
+          console.log('aaa');
           next('/popular');
         });
     },
@@ -54,7 +54,7 @@ const routes = [
         });
     },
   },
-  { path: '*', redirect: '/popular' },
+  { path: '*', redirect: '/my-music' },
 ];
 
 const router = new VueRouter({

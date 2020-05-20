@@ -1,6 +1,5 @@
 <template>
   <div class="my-music">
-    <search-bar />
     <track-list
       :rel-path="relPath"
     />

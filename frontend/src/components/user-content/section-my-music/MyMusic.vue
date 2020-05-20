@@ -1,22 +1,20 @@
 <template>
   <div class="my-music">
-    <search-bar />
     <track-list
       class="track-list"
       :rel-path="relPath"
       :is-authorised-api="true"
+      :is-my-music="true"
     />
   </div>
 </template>
 
 <script>
 import TrackList from '@/components/common/TrackList';
-import SearchBar from '@/components/user-content/SearchBar';
 
 export default {
   components: {
     TrackList,
-    SearchBar,
   },
 
   data() {

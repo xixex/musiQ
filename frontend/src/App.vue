@@ -28,10 +28,11 @@ import AudioPlayer from '@/components/AudioPlayer';
 import PageHeader from '@/components/page-header/PageHeader';
 import SignInForm from '@/components/SignInForm';
 import SignUpForm from '@/components/SignUpForm';
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import { ACTION_CHECK_IF_AUTHORIZED } from '@/store/modules/auth';
 import NavigationBar from '@/components/user-content/NavigationBar';
 import NewTrackForm from '@/components/NewTrackForm';
+import { ACTION_GET_ALL_MY_TRACKS } from '@/store/modules/myMusic';
 
 export default {
 
@@ -53,8 +54,20 @@ export default {
     };
   },
 
+  computed: {
+    ...mapState({
+      isAuthorised: (state) => state.auth.isAuthorised,
+    }),
+  },
+
   mounted() {
-    this.ACTION_CHECK_IF_AUTHORIZED();
+    this.ACTION_CHECK_IF_AUTHORIZED()
+      .then(() => {
+        if (this.isAuthorised) {
+          console.log('aaa');
+          this.ACTION_GET_ALL_MY_TRACKS();
+        }
+      });
   },
 
   methods: {
@@ -84,6 +97,7 @@ export default {
 
     ...mapActions({
       ACTION_CHECK_IF_AUTHORIZED,
+      ACTION_GET_ALL_MY_TRACKS,
     }),
   },
 };

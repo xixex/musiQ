@@ -18,11 +18,31 @@
         v-text="track.author"
       />
     </div>
+    <div
+      v-if="isAuthorised"
+      class="audio-controls"
+    >
+      <img
+        v-if="isAdded"
+        class="delete-btn control"
+        :src="deleteIcon"
+        alt=""
+        @click.stop="removeAudio"
+      >
+      <img
+        v-else
+        class="add-btn control"
+        src="@/assets/delete.svg"
+        alt=""
+        @click.stop="addAudio"
+      >
+    </div>
   </div>
 </template>
 
 <script>
 
+import axios from 'axios';
 import { mapActions, mapMutations, mapState } from 'vuex';
 import {
   ACTION_PAUSE_TRACK,
@@ -41,12 +61,25 @@ export default {
       required: true,
       default: null,
     },
+
+    isMyMusic: {
+      required: false,
+      default: false,
+    },
+  },
+
+  data() {
+    return {
+      isAdded: false,
+    };
   },
 
   computed: {
     ...mapState({
       currentTrackObj: (state) => state.player.currentTrackObj,
       isPlayerPlaying: (state) => state.player.isPlaying,
+      allMyTracks: (state) => state.myMusic.allMyTracks,
+      isAuthorised: (state) => state.auth.isAuthorised,
     }),
 
     statusLogo() {
@@ -60,6 +93,22 @@ export default {
         && this.track.id === this.currentTrackObj.id
         && this.isPlayerPlaying === true;
     },
+
+    deleteIcon() {
+      return this.isMyMusic
+        ? require('@/assets/delete.svg')
+        : require('@/assets/check.svg');
+    },
+  },
+
+  watch: {
+    allMyTracks() {
+      this.setIsAdded();
+    },
+  },
+
+  mounted() {
+    this.setIsAdded();
   },
 
   methods: {
@@ -86,6 +135,48 @@ export default {
     pauseTrack() {
       this.ACTION_PAUSE_TRACK();
     },
+
+    removeAudio() {
+      const config = {
+        headers: {
+          Authorization: localStorage.getItem('access_token'),
+        },
+      };
+
+      const data = {
+        trackID: this.track.id,
+      };
+
+      axios.patch(`${window.hostname}/api/audio/user-list/remove`, data, config)
+        .then(() => {
+          this.$emit('forceUpdate');
+          this.isAdded = false;
+        });
+    },
+
+    addAudio() {
+      const config = {
+        headers: {
+          Authorization: localStorage.getItem('access_token'),
+        },
+      };
+
+      const data = {
+        trackID: this.track.id,
+      };
+
+      axios.patch(`${window.hostname}/api/audio/user-list/add`, data, config)
+        .then(() => {
+          this.$emit('forceUpdate');
+          this.isAdded = true;
+        });
+    },
+
+    setIsAdded() {
+      if (this.allMyTracks.some((e) => e.id === this.track.id)) {
+        this.isAdded = true;
+      }
+    },
   },
 };
 </script>
@@ -101,10 +192,10 @@ export default {
     color: white;
     font-size: 14px;
     border-bottom: 1px solid rgba(255,255,255,0.2);
-    padding: 10px 0;
+    padding: 10px 18px;
 
     &:hover{
-      opacity: 0.5;
+      background-color: rgba(0,0,0,0.4);
     }
   }
 
@@ -125,7 +216,29 @@ export default {
     font-weight: bold;
   }
 
-  .current-time{
+  .audio-controls{
     margin-left: auto;
   }
+
+  .control{
+    margin-left: 12px;
+
+    &:hover{
+      transform: scale(1.4);
+    }
+  }
+
+  .delete-btn{
+    width: 12px;
+  }
+
+  .add-btn{
+    width: 12px;
+    transform: rotate(45deg);
+
+    &:hover{
+      transform: scale(1.4) rotate(45deg);
+    }
+  }
+
 </style>

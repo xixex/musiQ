@@ -7,6 +7,8 @@
       <audio-row
         :track="track"
         :all-tracks="tracks"
+        :is-my-music="isMyMusic"
+        @forceUpdate="getTracks"
       />
     </div>
   </div>
@@ -15,6 +17,8 @@
 <script>
 import axios from 'axios';
 import AudioRow from '@/components/common/AudioRow';
+import { mapMutations } from 'vuex';
+import { MUTATION_SET_ALL_MY_TRACKS } from '@/store/modules/myMusic';
 
 
 export default {
@@ -27,7 +31,13 @@ export default {
       required: true,
       default: '',
     },
+
     isAuthorisedApi: {
+      required: false,
+      default: false,
+    },
+
+    isMyMusic: {
       required: false,
       default: false,
     },
@@ -45,6 +55,10 @@ export default {
   },
 
   methods: {
+    ...mapMutations({
+      MUTATION_SET_ALL_MY_TRACKS,
+    }),
+
     getTracks() {
       const config = {};
 
@@ -57,6 +71,10 @@ export default {
       axios.get(`${window.hostname}${this.relPath}`, config)
         .then((res) => {
           this.tracks = this.prepareTracks(res.data);
+
+          if (this.isMyMusic) {
+            this.MUTATION_SET_ALL_MY_TRACKS({ tracks: this.tracks });
+          }
         });
     },
 
