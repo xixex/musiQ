@@ -1,6 +1,6 @@
 <template>
   <div
-    class="audio-row"
+    :class="['audio-row', {'disabled': isMyMusic && !isAdded}]"
     @click.stop="playPause"
   >
     <img
@@ -229,6 +229,10 @@ export default {
     font-size: 14px;
     border-bottom: 1px solid rgba(255,255,255,0.2);
     padding: 10px 18px;
+
+    &.disabled{
+      opacity: 0.4;
+    }
 
     &:hover{
       background-color: rgba(0,0,0,0.4);

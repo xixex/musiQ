@@ -132,6 +132,7 @@ export default {
   flex-direction: column;
   align-items: center;
   background-image: url('http://jellydemos.com/wordpress/decibel/wp-content/uploads/2018/08/intro-slide3.jpg');
+  /*background: linear-gradient(65deg, #000, #03001e);*/
   height: 100vh;
 }
 

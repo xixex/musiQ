@@ -67,6 +67,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "~assets/main.scss";
+
   .user-content{
     flex-direction: column;
     width: 50vw;
@@ -76,7 +78,14 @@ export default {
   }
 
   .header-text{
+    text-transform: uppercase;
+    font-weight: bold;
     margin-right: auto;
+    position: absolute;
+    font-size: 90px;
+    white-space: nowrap;
+    left: -240px;
+    top: -130px;
   }
 
   .user-controls{
