@@ -3,6 +3,11 @@
     <search-bar />
     <div class="user-controls">
       <img
+        class="upload-logo"
+        src="@/assets/addplaylist.svg"
+        alt=""
+      >
+      <img
         :src="require('@/assets/upload.svg')"
         class="upload-logo"
         alt=""
@@ -24,6 +29,10 @@ export default {
   },
 
   methods: {
+    openNewPlaylistForm() {
+      this.$emit('openNewPlaylistForm');
+    },
+
     openNewTrackForm() {
       this.$emit('openNewTrackForm');
     },
@@ -35,19 +44,22 @@ export default {
   .user-content{
     flex-direction: column;
     width: 50vw;
+    position: absolute;
+    top: 70px;
+    bottom: 80px;
   }
 
   .user-controls{
     flex-direction: row;
     border-bottom: 1px solid white;
     height: 50px;
+    justify-content: flex-end;
   }
 
   .upload-logo{
     align-self: center;
     width: 24px;
-    margin-left: auto;
-    padding: 12px;
+    padding: 0 6px;
     cursor: pointer;
 
     &:hover{

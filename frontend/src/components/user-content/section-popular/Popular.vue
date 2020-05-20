@@ -1,5 +1,5 @@
 <template>
-  <div class="my-music">
+  <div class="popular">
     <track-list
       :rel-path="relPath"
     />
@@ -13,7 +13,6 @@ import SearchBar from '@/components/user-content/SearchBar';
 export default {
   components: {
     TrackList,
-    SearchBar,
   },
 
   data() {
@@ -25,9 +24,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .my-music{
+  .popular{
     display: flex;
     flex-direction: column;
+    height: 100%;
+    overflow-y: scroll;
   }
 
 </style>

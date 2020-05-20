@@ -132,6 +132,10 @@ div {
   display: flex;
   box-sizing: border-box;
   color: white;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 </style>

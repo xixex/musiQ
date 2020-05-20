@@ -6,22 +6,24 @@
         ref="newTrack"
         @submit.prevent="uploadTrack"
       >
-        <div class="inputBox">
-          <input
-            v-model="author"
-            name="author"
-            value=""
-          >
-          <label>Author</label>
-        </div>
-        <div class="inputBox">
-          <input
-            v-model="title"
-            name="title"
-            value=""
-          >
-          <label>Title</label>
-        </div>
+        <template v-if="isFileUploaded">
+          <div class="inputBox">
+            <input
+              v-model="author"
+              name="author"
+              value=""
+            >
+            <label>Author</label>
+          </div>
+          <div class="inputBox">
+            <input
+              v-model="title"
+              name="title"
+              value=""
+            >
+            <label>Title</label>
+          </div>
+        </template>
         <div class="button-wrapper">
           <span
             class="label"
@@ -38,9 +40,11 @@
           >
         </div>
         <input
+          :disabled="isButtonDisabled"
           type="submit"
           name="sign-in"
           value="OK"
+          class="button-ok"
         >
       </form>
     </div>
@@ -64,12 +68,16 @@ export default {
       author: '',
       title: '',
       audiofile: null,
-      uploadFilePlaceholder: 'Upload file',
+      isFileUploaded: false,
+      isButtonDisabled: true,
+      uploadFilePlaceholder: 'Upload audio',
     };
   },
 
   methods: {
     uploadTrack() {
+      this.isButtonDisabled = true;
+
       const config = {
         headers: {
           Authorization: localStorage.getItem('access_token'),
@@ -85,7 +93,13 @@ export default {
     },
 
     fileUploadedFromComputer(event) {
+      this.isFileUploaded = true;
+      this.isButtonDisabled = false;
       this.audiofile = event.target.files[0];
+
+      const [author, title] = this.audiofile.name.slice(0, -4).split('-');
+      this.author = author;
+      this.title = title;
       this.uploadFilePlaceholder = event.target.files[0].name;
     },
 
@@ -202,6 +216,7 @@ export default {
   #upload {
     display: inline-block;
     position: absolute;
+    box-sizing: border-box;
     z-index: 1;
     width: 100%;
     height: 50px;
@@ -209,5 +224,10 @@ export default {
     left: 0;
     opacity: 0;
     cursor: pointer;
+  }
+
+  .button-ok:disabled{
+    cursor: default !important;
+    opacity: 0.2;
   }
 </style>
