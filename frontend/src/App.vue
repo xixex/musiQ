@@ -122,6 +122,8 @@ export default {
 </script>
 
 <style lang="scss">
+  @import "~assets/main.scss";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -131,8 +133,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url('http://jellydemos.com/wordpress/decibel/wp-content/uploads/2018/08/intro-slide3.jpg');
-  /*background: linear-gradient(65deg, #000, #03001e);*/
+  background: $gray1;
   height: 100vh;
 }
 

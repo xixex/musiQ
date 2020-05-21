@@ -51,7 +51,11 @@ export default {
     padding: 2.5rem;
     box-sizing: border-box;
     background: rgba(0, 0, 0, 0.6);
-    border-radius: 0.625rem;
+    background: $gray1;
+    border-radius: 10px;
+    border: 4px solid $gray1;
+    box-shadow:  7px 7px 14px #000000,
+    -7px -7px 14px #000000;
   }
 
   .box h2 {

@@ -1,72 +1,93 @@
 <template>
   <div class="player-audio">
-    <div class="player-content">
+    <img
+      v-if="currentTrackObj"
+      class="track-logo"
+      src="https://i.pinimg.com/originals/bd/94/57/bd945731bba069d23d6129f8fd0cf0d0.png"
+      alt=""
+    >
+    <div class="controls">
+      <div
+        class="control-btn back-btn"
+        @click="playPrevious"
+      >
+        <img
+          src="@/assets/forward.svg"
+          alt=""
+          class="back-logo"
+        >
+      </div>
+      <div
+        v-if="!isPlaying"
+        class="control-btn play-btn"
+        @click="playPause"
+      >
+        <img
+          src="@/assets/play2.svg"
+          alt=""
+          class="play-logo"
+        >
+      </div>
+      <div
+        v-else
+        class="control-btn pause-btn"
+        @click="playPause"
+      >
+        <img
+          src="@/assets/pause2.svg"
+          alt=""
+          class="play-logo"
+        >
+      </div>
+      <div
+        class="control-btn forward-btn"
+        @click="playNext"
+      >
+        <img
+          src="@/assets/forward.svg"
+          alt=""
+          class="forward-logo"
+        >
+      </div>
+    </div>
+    <div
+      class="track-wrapper"
+    >
       <div
         v-if="currentTrackObj"
-        class="artist-wrapper"
+        class="track-info"
       >
-        <img
-          class="track-logo"
-          src="https://i.pinimg.com/originals/bd/94/57/bd945731bba069d23d6129f8fd0cf0d0.png"
-          alt=""
-        >
-        <span
-          class="author"
-          v-text="currentTrackObj.author"
-        />
-      </div>
-      <div class="controls">
-        <img
-          class="control-btn back-btn"
-          src="@/assets/forward.svg"
-          alt=""
-          @click="playPrevious"
-        >
-        <img
-          class="control-btn play-btn"
-          :src="playLogo"
-          alt=""
-          @click="playPause"
-        >
-        <img
-          class="control-btn forward-btn"
-          src="@/assets/forward.svg"
-          alt=""
-          @click="playNext"
-        >
-      </div>
-      <div
-        class="track-wrapper"
-      >
-        <div
-          v-if="currentTrackObj"
-          class="track-info"
-        >
+        <div class="author-title">
           <span
             class="track-title"
             v-text="currentTrackObj.title"
           />
-          <div class="time">
-            <span v-text="currentTimeString" />
-            <span v-text="' / '" />
-            <span v-text="durationString" />
-          </div>
+          <span
+            class="author"
+            v-text="currentTrackObj.author"
+          />
         </div>
-        <div class="time-line">
-          <input
-            v-if="currentTrackObj"
-            :style="{background: `linear-gradient(90deg, #00FF01 0%, #24FE41 ${currentTimePercent}%, #fff ${currentTimePercent}% , #fff 100%`}"
-            :value="currentTrackObj.currentTime"
-            type="range"
-            class="range"
-            min="0"
-            :max="currentTrackObj.duration"
-            step="1"
-            @input="setTime"
-          >
+        <div class="time">
+          <span v-text="currentTimeString" />
+          <span v-text="' / '" />
+          <span v-text="durationString" />
         </div>
       </div>
+      <div class="time-line">
+        <input
+          v-if="currentTrackObj"
+          :style="{background: `linear-gradient(90deg, #00F260 0%, #0575E6 ${currentTimePercent}%, #fff ${currentTimePercent}% , #fff 100%`}"
+          :value="currentTrackObj.currentTime"
+          type="range"
+          class="range"
+          min="0"
+          :max="currentTrackObj.duration"
+          step="1"
+          @input="setTime"
+        >
+      </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -148,6 +169,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "~assets/main.scss";
+
   .player-audio{
     position: fixed;
     bottom: 0;
@@ -156,9 +179,10 @@ export default {
     width: 100%;
     color: white;
     font-size: 14px;
-    background: rgba(21,21,24);
-    padding: 5px 15px;
+    padding: 15px 20%;
     z-index: 1000;
+    background: $gray1;
+    overflow: hidden;
   }
 
   .player-content{
@@ -175,56 +199,74 @@ export default {
   }
 
   .control-btn{
-    height: 100%;
-    padding: 0 10px;
+    margin: 0 5px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background: linear-gradient(145deg, #383d43, #2f3339);
+    box-shadow:  4px 4px 8px #25292d,
+    -4px -4px 8px #434951;
 
-    &:hover{
-      opacity: 0.6;
-      cursor: pointer;
+    &:active{
+      background: #34393f;
+      box-shadow: inset 4px 4px 8px #25292d,
+      inset -4px -4px 8px #434951;
     }
   }
 
+  .pause-btn,
   .play-btn{
-    width: 70px;
-    height: 70px;
+    z-index: 5;
   }
 
-  .back-btn{
+  .pause-btn{
+    position: relative;
+    background: linear-gradient(145deg , #00421e, #00ff64);
+    box-shadow:  9px 9px 18px #262a2f,
+    -9px -9px 18px #42484f;
+
+    &:after{
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid #00c64f;
+    }
+  }
+
+  .play-logo{
+    width: 8px;
+  }
+
+  .forward-logo,
+  .back-logo{
+    width: 8px;
+  }
+
+  .back-logo{
     transform: rotate(180deg);
-  }
-
-  .back-btn,
-  .forward-btn{
-    width: 20px;
   }
 
   .track-wrapper{
     flex-direction: column;
-    height:  24px;
     padding: 0 10px;
     width: 100%;
   }
 
   .track-info{
     width: 100%;
-  }
-
-  .track-title{
-
+    padding: 0 4px;
   }
 
   .time{
     display:inline-block;
     margin-left: auto;
     font-size: 12px;
-  }
-
-  .time-line{
-    width: 100%;
-    background: white;
-    height: 3px;
-    border-radius: 2px;
-    margin-top: auto;
   }
 
   .artist-wrapper{
@@ -234,40 +276,62 @@ export default {
   }
 
   .track-logo{
-    width: 80px;
-    padding-right: 20px;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    margin: 0 30px;
     object-fit: cover;
+    box-shadow:  10px 10px 20px #23272b,
+    -10px -10px 20px #454b53;
+    position: relative;
+  }
+
+  .author-title{
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-right: 8px;
+    text-align: left;
+  }
+
+  .track-title{
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 0.8;
   }
 
   .author{
-    width: max-content;
-    max-width: 100px;
-    font-weight: bold;
-    white-space: nowrap;
-    overflow: hidden;
+    font-size: 12px;
+    opacity: 0.6;
+    line-height: 2;
   }
 
-  .range{
+  .time-line{
     width: 100%;
-
   }
 
   .range {
+    width: 100%;
     -webkit-appearance: none;
     cursor: pointer;
-    height: 3px;
+    height: 5px;
     margin: 0;
-    border-radius: 2px;
-    width: 100%;
     outline: none;
+    border-radius: 3px;
+    box-shadow: inset 1px 1px 3px #292c31;
+
 
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
-      height: 12px;
-      width: 12px;
+      height: 18px;
+      width: 18px;
       border-radius: 50%;
-      background: #ffffff;
       cursor: pointer;
+      border: 5px solid #34393f;
+      background: linear-gradient(45deg, #00F260, #0575E6);
+      box-shadow:  1px 1px 3px #151719,
+      -1px -1px 3px #535b65;
     }
   }
 

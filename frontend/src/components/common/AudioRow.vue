@@ -1,13 +1,16 @@
 <template>
   <div
-    :class="['audio-row', {'disabled': isMyMusic && !isAdded}]"
+    :class="['audio-row', {'disabled': isMyMusic && !isAdded}, {'active' : isPlaying}]"
     @click.stop="playPause"
   >
-    <img
-      alt=""
-      :src="statusLogo"
-      class="status-btn"
-    >
+    <div :class="['status-btn', {'playing': isPlaying}]">
+      <img
+        alt=""
+        class="status-logo"
+        :src="statusLogo"
+      >
+    </div>
+
     <div class="track-name">
       <span
         class="title"
@@ -110,8 +113,8 @@ export default {
 
     statusLogo() {
       return this.isPlaying
-        ? require('@/assets/pause.svg')
-        : require('@/assets/play.svg');
+        ? require('@/assets/pause2.svg')
+        : require('@/assets/play2.svg');
     },
 
     isPlaying() {
@@ -226,8 +229,8 @@ export default {
     justify-content: flex-start;
     cursor: pointer;
     color: white;
+    border-radius: 0.5em;
     font-size: 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
     padding: 10px 18px;
 
     &.disabled{
@@ -235,25 +238,73 @@ export default {
     }
 
     &:hover{
-      background-color: rgba(0,0,0,0.4);
+      background: #242629;
+      box-shadow: inset 5px 5px 11px #212326,
+      inset -5px -5px 11px #27292c;
+    }
+
+    &.active
+    {
+      background: #242629;
+      box-shadow: inset 5px 5px 11px #1c1e20,
+      inset -5px -5px 11px #2c2e32;
     }
   }
 
   .status-btn{
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     justify-content: center;
     align-items: center;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #3f484e, #26282e);
+    box-shadow:  4px 4px 8px #25292d,
+    -4px -4px 8px #434951;
+    position: relative;
+
+    &:after{
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid #34363c;
+    }
+
+    &.playing{
+      background: linear-gradient(145deg , #00421e, #00ff64);
+      box-shadow:  5px 5px 13px #25292d,
+      -5px -5px 13px #434951;
+
+      &:after{
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 2px solid #00c64f;
+      }
+    }
+  }
+
+  .status-logo{
+    width: 8px;
   }
 
   .track-name{
     flex-direction: column;
     text-align: left;
     padding: 0 12px;
+    line-height: 1.4;
   }
 
   .title{
     font-weight: bold;
+  }
+
+  .author{
+    font-size: 11px;
+    opacity: 0.6;
   }
 
   .audio-controls{

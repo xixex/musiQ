@@ -23,14 +23,14 @@
         v-text="'Popular'"
       />
     </div>
-    <div class="link-wrapper">
-      <router-link
-        v-if="isAuthorised"
-        to="/recent"
-        class="nav-item"
-        v-text="'Recently listened'"
-      />
-    </div>
+<!--    <div class="link-wrapper">-->
+<!--      <router-link-->
+<!--        v-if="isAuthorised"-->
+<!--        to="/recent"-->
+<!--        class="nav-item"-->
+<!--        v-text="'Recently listened'"-->
+<!--      />-->
+<!--    </div>-->
   </div>
 </template>
 

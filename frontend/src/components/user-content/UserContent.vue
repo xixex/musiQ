@@ -90,7 +90,6 @@ export default {
 
   .user-controls{
     flex-direction: row;
-    border-bottom: 1px solid white;
     height: 50px;
     justify-content: flex-end;
     align-items: center;

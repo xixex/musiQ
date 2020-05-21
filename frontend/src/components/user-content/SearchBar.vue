@@ -1,8 +1,9 @@
 <template>
-  <input
-    class="search"
-    placeholder="Search"
-  >
+  <div></div>
+<!--  <input-->
+<!--    class="search"-->
+<!--    placeholder="Search"-->
+<!--  >-->
 </template>
 
 <script>

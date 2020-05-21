@@ -40,6 +40,7 @@
           >
         </div>
         <input
+          v-if="isFileUploaded"
           :disabled="isButtonDisabled"
           type="submit"
           name="sign-in"
@@ -121,8 +122,11 @@ export default {
     width: 25rem;
     padding: 2.5rem;
     box-sizing: border-box;
-    background: rgba(0, 0, 0, 0.6);
-    border-radius: 0.625rem;
+    background: $gray1;
+    border-radius: 10px;
+    border: 4px solid $gray1;
+    box-shadow:  7px 7px 14px #000000,
+    -7px -7px 14px #000000;
   }
 
   .box h2 {
@@ -172,18 +176,16 @@ export default {
   .box input[type="submit"] {
     border: none;
     outline: none;
-    color: black;
-    background: linear-gradient(90deg, $green-color, $green-color2);
+    color: white;
     padding: 0.625rem 1.25rem;
     cursor: pointer;
     border-radius: 0.312rem;
     font-size: 12px;
     font-weight: bold;
     width: 100%;
-  }
-
-  .box input[type="submit"]:hover {
-    background-color: #1cb1f5;
+    background: linear-gradient(145deg, #383d43, #2f3339);
+    box-shadow:  7px 7px 14px #282b30,
+    -7px -7px 14px #40474e;
   }
 
   .button-wrapper {
@@ -223,6 +225,7 @@ export default {
 
   .button-ok:disabled{
     cursor: default !important;
-    opacity: 0.2;
+    opacity: 0.4;
+    box-shadow: none !important;
   }
 </style>

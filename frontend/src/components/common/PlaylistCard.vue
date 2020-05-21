@@ -56,7 +56,8 @@ export default {
     padding-top: 20%;
     position: relative;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: visible;
+    z-index: 20;
   }
 
   .playlist{
@@ -65,18 +66,25 @@ export default {
     height: 90%;
     top: 5%;
     left: 5%;
-    border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
-    padding: 10px;
-    background: linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(67, 67, 67, 0.7));
+    padding: 20px;
     justify-content: center;
     align-items: center;
+    border-radius: 20px;
+    background: #34393f;
+    box-shadow:  5px 5px 10px #2c3036,
+    -5px -5px 10px #3c4248;
   }
 
   .title{
     font-weight: bold;
-    font-size: 14px;
+    font-size: 12px;
+    margin-top: auto;
+    margin-right: auto;
+    text-align: left;
+    align-self: flex-start;
+    width: 50%;
   }
 
   .background{
