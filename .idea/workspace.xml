@@ -4,6 +4,7 @@
     <list default="true" id="3f6343aa-7473-4b7d-a8ba-4bbfa176b8b7" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/plus.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/assets/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/assets/main.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/AudioPlayer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AudioPlayer.vue" afterDir="false" />
@@ -80,7 +81,7 @@
       <workItem from="1589552707430" duration="78000" />
       <workItem from="1589552799504" duration="146000" />
       <workItem from="1590007368540" duration="548000" />
-      <workItem from="1590082496098" duration="50000" />
+      <workItem from="1590082496098" duration="263000" />
     </task>
     <servers />
   </component>
