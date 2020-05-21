@@ -23,14 +23,14 @@
         v-text="'Popular'"
       />
     </div>
-<!--    <div class="link-wrapper">-->
-<!--      <router-link-->
-<!--        v-if="isAuthorised"-->
-<!--        to="/recent"-->
-<!--        class="nav-item"-->
-<!--        v-text="'Recently listened'"-->
-<!--      />-->
-<!--    </div>-->
+    <!--    <div class="link-wrapper">-->
+    <!--      <router-link-->
+    <!--        v-if="isAuthorised"-->
+    <!--        to="/recent"-->
+    <!--        class="nav-item"-->
+    <!--        v-text="'Recently listened'"-->
+    <!--      />-->
+    <!--    </div>-->
   </div>
 </template>
 
@@ -52,6 +52,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "~assets/main.scss";
+
   .nav-content{
     display: flex;
     flex-direction: column;
@@ -83,7 +85,7 @@ export default {
 
     &.router-link-active{
       border-bottom: 1px solid white;
-      color: #24FE41;
+      color: $green-color;
     }
   }
 

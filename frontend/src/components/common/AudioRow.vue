@@ -238,16 +238,14 @@ export default {
     }
 
     &:hover{
-      background: #242629;
-      box-shadow: inset 5px 5px 11px #212326,
-      inset -5px -5px 11px #27292c;
+      box-shadow: inset 7px 7px 5px #33383e,
+      inset -7px -7px 5px #353a40;
     }
 
     &.active
     {
-      background: #242629;
-      box-shadow: inset 5px 5px 11px #1c1e20,
-      inset -5px -5px 11px #2c2e32;
+      box-shadow: inset 7px 7px 5px #31363c,
+      inset -7px -7px 5px #373c42;
     }
   }
 
