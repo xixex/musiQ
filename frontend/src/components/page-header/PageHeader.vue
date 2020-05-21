@@ -1,5 +1,9 @@
 <template>
   <div class="page-header">
+    <h2
+      class="header-text"
+      v-text="headerText"
+    />
     <img
       :src="require('@/assets/logo.png')"
       alt=""
@@ -39,6 +43,21 @@ export default {
     ...mapState({
       isAuthorised: (state) => state.auth.isAuthorised,
     }),
+
+    headerText() {
+      switch (this.$route.path) {
+        case '/my-music':
+          return 'My music';
+        case '/playlists':
+          return 'My Playlists';
+        case '/recent':
+          return 'Recently Listened';
+        case '/popular':
+          return 'Popular';
+        default:
+          return '';
+      }
+    },
   },
 
   methods: {
@@ -69,6 +88,17 @@ export default {
     height: 70px;
     justify-content: flex-end;
     padding: 15px 0;
+  }
+
+  .header-text{
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-right: auto;
+    position: absolute;
+    font-size: 80px;
+    white-space: nowrap;
+    left: 240px;
+    top: -40px;
   }
 
   .logo{

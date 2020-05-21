@@ -1,10 +1,6 @@
 <template>
   <div class="user-content">
     <div class="user-controls">
-      <h2
-        class="header-text"
-        v-text="headerText"
-      />
       <template v-if="isAuthorised">
         <img
           class="upload-logo"
@@ -37,21 +33,6 @@ export default {
     ...mapState({
       isAuthorised: (state) => state.auth.isAuthorised,
     }),
-
-    headerText() {
-      switch (this.$route.path) {
-        case '/my-music':
-          return 'My music';
-        case '/playlists':
-          return 'My Playlists';
-        case '/recent':
-          return 'Recently Listened';
-        case '/popular':
-          return 'Popular';
-        default:
-          return '';
-      }
-    },
   },
 
   methods: {
@@ -72,20 +53,12 @@ export default {
   .user-content{
     flex-direction: column;
     width: 50vw;
-    position: absolute;
-    top: 70px;
-    bottom: 90px;
-  }
-
-  .header-text{
-    text-transform: uppercase;
-    font-weight: bold;
-    margin-right: auto;
-    position: absolute;
-    font-size: 90px;
-    white-space: nowrap;
-    left: -240px;
-    top: -130px;
+    height: 100%;
+    border-radius: 5px;
+    padding: 24px 36px 58px;
+    background: #34393f;
+    box-shadow:  14px 14px 23px #2d3237,
+    -14px -14px 23px #3b4047;
   }
 
   .user-controls{
@@ -106,4 +79,6 @@ export default {
       transform: scale(1.1);
     }
   }
+
+
 </style>
