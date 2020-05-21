@@ -2,18 +2,26 @@
   <div class="user-content">
     <div class="user-controls">
       <template v-if="isAuthorised">
-        <img
-          class="upload-logo"
-          src="@/assets/addplaylist.svg"
-          alt=""
+        <div
+          class="control"
           @click="openNewPlaylistForm"
         >
-        <img
-          :src="require('@/assets/upload.svg')"
-          class="upload-logo"
-          alt=""
+          <img
+            class="upload-logo"
+            src="@/assets/addplaylist.svg"
+            alt=""
+          >
+        </div>
+        <div
+          class="control"
           @click="openNewTrackForm"
         >
+          <img
+            :src="require('@/assets/upload.svg')"
+            class="upload-logo"
+            alt=""
+          >
+        </div>
       </template>
     </div>
     <router-view />
@@ -69,15 +77,36 @@ export default {
     padding: 0 12px;
   }
 
-  .upload-logo{
-    align-self: center;
-    width: 24px;
+  .control{
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
     margin-left: 14px;
     cursor: pointer;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #3f484e, #26282e);
+    box-shadow:  4px 4px 8px #25292d,
+    -4px -4px 8px #434951;
+    position: relative;
+
+    &:after{
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid #34363c;
+    }
 
     &:hover{
       transform: scale(1.1);
     }
+  }
+
+  .upload-logo{
+    align-self: center;
+    width: 14px;
   }
 
 

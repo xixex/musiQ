@@ -10,12 +10,16 @@
       class="logo"
     >
     <template v-if="isAuthorised">
-      <img
-        alt=""
-        src="@/assets/logout.svg"
-        class="sign-btn logout"
+      <div
+        class="control"
         @click="logOut"
       >
+        <img
+          alt=""
+          src="@/assets/logout.svg"
+          class="logout"
+        >
+      </div>
     </template>
 
     <template v-else>
@@ -85,9 +89,8 @@ export default {
     flex-direction: row;
     box-sizing: border-box;
     width: 100%;
-    height: 70px;
     justify-content: flex-end;
-    padding: 15px 0;
+    padding: 14px 32px;
   }
 
   .header-text{
@@ -104,11 +107,37 @@ export default {
   .logo{
     width: 100px;
     margin-right: auto;
-    padding: 0 10px;
+  }
+
+  .control{
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-left: 14px;
+    cursor: pointer;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #3f484e, #26282e);
+    box-shadow:  4px 4px 8px #25292d,
+    -4px -4px 8px #434951;
+    position: relative;
+
+    &:after{
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid #34363c;
+    }
+
+    &:hover{
+      transform: scale(1.1);
+    }
   }
 
   .logout{
-    width: 20px;
+    width: 14px;
   }
 
   .sign-btn{
@@ -116,14 +145,18 @@ export default {
     align-items: center;
     border-radius: 5px;
     text-align: center;
-    padding: 0 15px;
+    padding: 0 10px;
+    font-weight: bold;
     margin-right: 10px;
     width: 90px;
     cursor: pointer;
     font-size: 14px;
-    background: rgba(255,255,255,0.02);
+    background: linear-gradient(145deg, #383d43, #2f3339);
+    box-shadow:  5px 5px 16px #282c31,
+    -5px -5px 16px #40464d;
 
     &:hover{
+      border: 1px solid #34363c;
       background: rgba(255,255,255,0.1);
     }
   }

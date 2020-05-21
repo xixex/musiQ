@@ -26,24 +26,32 @@
       class="audio-controls"
     >
       <template v-if="isAddable">
-        <img
+        <div
           v-if="isAdded"
-          class="delete-btn control"
-          :src="deleteIcon"
-          alt=""
+          :class="['audio-control-wrapper', {'picked-wrapper' : !isMyMusic}]"
           @click.stop="removeAudio"
         >
-        <img
+          <img
+            class="delete-btn control"
+            :src="deleteIcon"
+            alt=""
+          >
+        </div>
+        <div
           v-else
-          class="add-btn control"
-          src="@/assets/delete.svg"
-          alt=""
+          class="audio-control-wrapper"
           @click.stop="addAudio"
         >
+          <img
+            class="add-btn control"
+            src="@/assets/plus.svg"
+            alt=""
+          >
+        </div>
       </template>
       <template v-if="isPickable">
         <div
-          :class="['pick-circle', {'picked' : isPicked}]"
+          class="audio-control-wrapper picked-wrapper"
           @click.stop="togglePick"
         >
           <img
@@ -305,50 +313,42 @@ export default {
     opacity: 0.6;
   }
 
+  .audio-control-wrapper{
+    width: 28px;
+    height: 28px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-left: 12px;
+    background: linear-gradient(145deg, #383d43, #2f3339);
+    box-shadow:  5px 5px 10px #2d3136,
+    -5px -5px 10px #3b4148;
+
+    &:hover{
+      transform: scale(1.1);
+    }
+  }
+
+  .audio-control-wrapper.picked-wrapper{
+    background: #383f45;
+    box-shadow: inset 3px 3px 1px #31363c,
+    inset -3px -3px 1px #373c42;
+  }
+
   .audio-controls{
     margin-left: auto;
   }
 
-  .control{
-    margin-left: 12px;
-
-    &:hover{
-      transform: scale(1.4);
-    }
-  }
-
   .delete-btn{
-    width: 12px;
+    width: 8px;
   }
 
   .add-btn{
-    width: 12px;
-    transform: rotate(45deg);
-
-    &:hover{
-      transform: scale(1.4) rotate(45deg);
-    }
-  }
-
-  .pick-circle{
-    border: 1px solid white;
-    width: 20px;
-    height: 20px;
-    margin-left: 12px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &:hover{
-      transform: scale(1.2);
-    }
+    width: 8px;
   }
 
   .pick-check{
-    width: 100%;
-    margin-left: 4px;
-    margin-bottom: 4px;
+    width: 8px;
   }
 
 </style>

@@ -183,6 +183,10 @@ export default {
     z-index: 1000;
     background: $gray1;
     overflow: hidden;
+
+    background: #34393f;
+    box-shadow: inset 12px 12px 25px #2e3338,
+    inset -12px -12px 25px #3a3f46;
   }
 
   .player-content{
