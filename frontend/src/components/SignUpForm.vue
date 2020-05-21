@@ -158,4 +158,14 @@ export default {
     -7px -7px 14px #40474e;
   }
 
+  @media only screen and (max-width: 1919px) {
+    .box {
+      padding: 24px;
+    }
+
+    .box h2{
+      margin-bottom: 10px;
+    }
+  }
+
 </style>

@@ -1,5 +1,4 @@
 <template>
-
   <input
     class="search"
     placeholder="Search"
@@ -21,7 +20,7 @@ export default {
     justify-content: center;
     align-items: flex-start;
     padding: 0 20px;
-    width: calc(100% - 20px);
+    width: 100%;
     box-sizing: border-box;
     background: transparent;
     outline: none;

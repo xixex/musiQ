@@ -111,7 +111,7 @@ export default {
     transform: translate(-50%, -50%);
     width: 600px;
     height: calc(100% - 188px);
-    padding: 2.5rem;
+    padding: 40px;
     box-sizing: border-box;
     background: $gray1;
     border-radius: 10px;
@@ -236,5 +236,16 @@ export default {
     left: 0;
     box-sizing: border-box;
     width: 100%;
+  }
+
+  @media only screen and (max-width: 1919px) {
+    .box {
+      padding: 24px;
+      width: 400px;
+    }
+
+    .box h2{
+      margin-bottom: 10px;
+    }
   }
 </style>

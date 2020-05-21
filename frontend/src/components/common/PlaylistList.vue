@@ -51,13 +51,16 @@ export default {
 
   .playlists-wrapper{
     display: flex;
+    position: relative;
     flex-direction: column;
+    overflow: hidden;
   }
 
   .playlist-list{
     width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
+    overflow: scroll;
   }
 
 

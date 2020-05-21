@@ -59,14 +59,13 @@ export default {
   @import "~assets/main.scss";
 
   .user-content{
+    position: relative;
     flex-direction: column;
     width: 50vw;
     height: 100%;
-    border-radius: 5px;
-    padding: 24px 36px 58px;
+    border-left: 2px solid #30353b;
+    padding: 24px 36px;
     background: #34393f;
-    box-shadow:  14px 14px 23px #2d3237,
-    -14px -14px 23px #3b4047;
   }
 
   .user-controls{
@@ -109,5 +108,13 @@ export default {
     width: 14px;
   }
 
+  @media only screen and (max-width: 1919px) {
+
+    .user-content{
+      width: 70vw;
+      padding: 24px 24px;
+      background: #34393f;
+    }
+  }
 
 </style>

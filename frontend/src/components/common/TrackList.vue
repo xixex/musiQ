@@ -75,6 +75,8 @@ export default {
   .tracklist{
     display: flex;
     flex-direction: column;
+    position: relative;
+    overflow: hidden;
   }
 
   .list-wrapper{

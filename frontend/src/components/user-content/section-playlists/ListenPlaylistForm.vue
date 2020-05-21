@@ -73,4 +73,15 @@ export default {
     left: 40px;
     box-sizing: border-box;
   }
+
+  @media only screen and (max-width: 1919px) {
+    .box {
+      padding: 24px;
+      width: 400px;
+    }
+
+    .box h2{
+      margin-bottom: 10px;
+    }
+  }
 </style>

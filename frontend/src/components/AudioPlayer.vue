@@ -183,14 +183,13 @@ export default {
     z-index: 1000;
     background: $gray1;
     overflow: hidden;
-
     background: #34393f;
     box-shadow: inset 12px 12px 25px #2e3338,
     inset -12px -12px 25px #3a3f46;
   }
 
   .player-content{
-    width: 80%;
+    width: 100%;
     justify-content: center;
     align-items: center;
   }
@@ -339,11 +338,32 @@ export default {
     }
   }
 
+  @media only screen and (max-width: 1919px) {
 
-  @media only screen and (max-width: 1440px) {
+    .player-audio{
+      padding: 8px 20px;
+    }
+
+    .control-btn {
+      margin: 0 5px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+
+  @media only screen and (max-width: 1439px) {
 
     .player-content{
       width: 100%;
+    }
+
+    .player-audio{
+      padding: 8px 20px;
     }
   }
 </style>

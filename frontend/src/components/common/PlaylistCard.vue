@@ -108,4 +108,18 @@ export default {
       transform: scale(1.2);
     }
   }
+
+  /*@media only screen and (max-width: 1919px) {*/
+  /*  .playlist-wrapper{*/
+  /*    width: 25%;*/
+  /*    padding-top: 25%;*/
+  /*  }*/
+  /*}*/
+
+  /*@media only screen and (max-width: 1439px) {*/
+  /*  .playlist-wrapper{*/
+  /*    width: calc(100% / 3);*/
+  /*    padding-top: calc(100% / 3);*/
+  /*  }*/
+  /*}*/
 </style>

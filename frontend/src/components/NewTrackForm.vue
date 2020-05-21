@@ -228,4 +228,14 @@ export default {
     opacity: 0.4;
     box-shadow: none !important;
   }
+
+  @media only screen and (max-width: 1919px) {
+    .box {
+      padding: 24px;
+    }
+
+    .box h2{
+      margin-bottom: 10px;
+    }
+  }
 </style>

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { checkIfAuthorised } from '@/helpers/tokenHelper';
+import router from '@/router';
 
 export const MUTATION_SIGN_IN = 'MUTATION_SIGN_IN';
 export const MUTATION_SIGN_OUT = 'MUTATION_SIGN_OUT';
@@ -25,6 +26,7 @@ export default {
       localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_token');
       state.isAuthorised = false;
+      router.go('/popular');
     },
   },
 

@@ -56,19 +56,14 @@ export default {
 
   .nav-content{
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: flex-start;
     left: 0;
     height: 100%;
     width: 200px;
-    position: absolute;
-    top: 70px;
-    bottom: 80px;
     align-items: flex-start;
     background: #34393f;
-    box-shadow:  12px 12px 25px #2e3338,
-    -12px -12px 25px #3a3f46;
-    border-radius: 20px;
     padding: 24px 10px;
   }
 

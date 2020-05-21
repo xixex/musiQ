@@ -4,11 +4,13 @@
       @showSignIn="showSignIn"
       @showSignUp="showSignUp"
     />
-    <navigation-bar />
-    <user-content
-      @openNewTrackForm="showNewTrackForm"
-      @openNewPlaylistForm="showNewPlaylistForm"
-    />
+    <div class="nav-with-content">
+      <navigation-bar />
+      <user-content
+        @openNewTrackForm="showNewTrackForm"
+        @openNewPlaylistForm="showNewPlaylistForm"
+      />
+    </div>
     <audio-player />
     <sign-in-form
       v-if="isShowSignIn"
@@ -166,5 +168,16 @@ div {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  .nav-with-content{
+    width: max-content;
+    justify-content: center;
+    height: calc( 100% - 200px);
+    border-radius: 25px;
+    background: #34393f;
+    overflow: hidden;
+    box-shadow:  14px 14px 28px #2d3237,
+    -14px -14px 28px #3b4047;
   }
 </style>

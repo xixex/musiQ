@@ -1,9 +1,9 @@
 <template>
   <div class="page-header">
-    <h2
-      class="header-text"
-      v-text="headerText"
-    />
+<!--    <h2-->
+<!--      class="header-text"-->
+<!--      v-text="headerText"-->
+<!--    />-->
     <img
       :src="require('@/assets/logo.png')"
       alt=""
@@ -158,6 +158,15 @@ export default {
     &:hover{
       border: 1px solid #34363c;
       background: rgba(255,255,255,0.1);
+    }
+  }
+
+  @media only screen and (max-width: 1439px) {
+
+    .header-text{
+      left: 220px;
+      top: 0;
+      font-size: 50px;
     }
   }
 </style>
