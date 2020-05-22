@@ -27,7 +27,6 @@ export default {
     justify-content: center;
     width: 40px;
     height: 40px;
-    margin-left: 14px;
     cursor: pointer;
     border-radius: 50%;
     background: linear-gradient(145deg, #3f484e, #26282e);

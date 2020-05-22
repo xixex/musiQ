@@ -11,7 +11,22 @@
           alt=""
         >
       </div>
-      <template v-if="isAuthorised && windowWidth > 1023">
+      <div
+        v-if="!isAuthorized"
+        class="sign-buttons"
+      >
+        <div
+          class="sign-btn"
+          @click="showSignUp"
+          v-text="'Sign Up'"
+        />
+        <div
+          class="sign-btn"
+          @click="showSignIn"
+          v-text="'Sign In'"
+        />
+      </div>
+      <template v-if="isAuthorized && windowWidth > 1023">
         <div
           class="control"
           @click="openNewPlaylistForm"
@@ -34,7 +49,11 @@
         </div>
       </template>
     </div>
-    <router-view />
+    <transition
+      enter-active-class="magictime vanishIn"
+    >
+      <router-view />
+    </transition>
   </div>
 </template>
 
@@ -49,7 +68,7 @@ export default {
 
   computed: {
     ...mapState({
-      isAuthorised: (state) => state.auth.isAuthorised,
+      isAuthorized: (state) => state.auth.isAuthorized,
       windowWidth: (state) => state.windowWidth,
     }),
 
@@ -80,6 +99,14 @@ export default {
 
     openNav() {
       this.$emit('openNav');
+    },
+
+    showSignIn() {
+      this.$emit('showSignIn');
+    },
+
+    showSignUp() {
+      this.$emit('showSignUp');
     },
   },
 };
@@ -142,11 +169,36 @@ export default {
   }
 
   .control.nav{
-    margin-left: 0;
+    display: none;
   }
 
   .nav-logo{
     width: 14px;
+  }
+
+  .sign-buttons{
+    margin-left: auto;
+  }
+
+  .sign-btn{
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    text-align: center;
+    padding: 0 10px;
+    font-weight: bold;
+    width: 90px;
+    cursor: pointer;
+    font-size: 14px;
+    background: linear-gradient(145deg, #383d43, #2f3339);
+    box-shadow:  5px 5px 16px #282c31,
+    -5px -5px 16px #40464d;
+
+    &:hover{
+      border: 1px solid #34363c;
+      background: rgba(255,255,255,0.1);
+    }
   }
 
   @media only screen and (max-width: 1919px) {
@@ -167,7 +219,12 @@ export default {
     .user-controls{
       padding: 20px 10px 24px;
       border-bottom: 2px solid $border-gray;
+    }
 
+    .control.nav{
+      display: flex;
+      margin-left: 4px;
+      margin-right: auto;
     }
   }
 

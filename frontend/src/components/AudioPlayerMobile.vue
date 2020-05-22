@@ -3,6 +3,7 @@
     <button-control
       :logo="require('@/assets/go-back.svg')"
       class="button-go-back"
+      @click.native="hidePlayerMobile"
     />
     <div class="track-logo-wrapper">
       <img
@@ -167,6 +168,10 @@ export default {
 
     setTime(event) {
       this.MUTATION_SET_TRACK_MOMENT({ time: event.target.value });
+    },
+
+    hidePlayerMobile() {
+      this.$emit('hidePlayerMobile');
     },
   },
 };
@@ -354,5 +359,6 @@ export default {
 
   .button-go-back{
     align-self: flex-start;
+    margin-left: 0;
   }
 </style>

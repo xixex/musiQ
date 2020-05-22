@@ -1,6 +1,6 @@
 <template>
   <div class="my-music">
-    <track-list
+    <audio-row-list
       class="track-list"
       :is-my-music="true"
       :is-addable="true"
@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import TrackList from '@/components/common/TrackList';
+import AudioRowList from '@/components/common/AudioRowList';
 import { mapActions, mapState } from 'vuex';
 import { ACTION_UPDATE_ALL_MY_TRACKS } from '@/store/modules/myMusic';
 
 export default {
   components: {
-    TrackList,
+    AudioRowList,
   },
 
   computed: {

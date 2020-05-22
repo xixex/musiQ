@@ -1,24 +1,20 @@
 <template>
   <div id="app">
-    <page-header
-      class="page-header"
-      @showSignIn="showSignIn"
-      @showSignUp="showSignUp"
-    />
     <div class="nav-with-content">
       <navigation-bar
         v-if="isShowNavigation"
-        @hideNav="hideNav"
         class="nav-bar"
+        @hideNav="hideNav"
       />
       <user-content
         @click.native="hideNav"
         @openNewTrackForm="showNewTrackForm"
         @openNewPlaylistForm="showNewPlaylistForm"
         @openNav="openNav"
+        @showSignIn="showSignIn"
+        @showSignUp="showSignUp"
       />
     </div>
-    <audio-player class="audio-player" />
     <sign-in-form
       v-if="isShowSignIn"
       @close="hideSignIn"
@@ -35,14 +31,26 @@
       v-if="isShowNewPlaylistForm"
       @close="hideNewPlaylistForm"
     />
-    <audio-player-mobile />
+    <audio-player
+      v-if="currentTrackObj"
+      class="audio-player"
+      @showPlayerMobile="showPlayerMobile"
+    />
+    <transition
+      enter-active-class="magictime vanishIn"
+      leave-active-class="magictime vanishOut"
+    >
+      <audio-player-mobile
+        v-if="windowWidth < 1024 && isShowPlayerMobile"
+        @hidePlayerMobile="hidePlayerMobile"
+      />
+    </transition>
   </div>
 </template>
 
 <script>
 import UserContent from '@/components/user-content/UserContent';
 import AudioPlayer from '@/components/AudioPlayer';
-import PageHeader from '@/components/page-header/PageHeader';
 import SignInForm from '@/components/SignInForm';
 import SignUpForm from '@/components/SignUpForm';
 import { mapActions, mapMutations, mapState } from 'vuex';
@@ -62,7 +70,6 @@ export default {
     NewTrackForm,
     NavigationBar,
     UserContent,
-    PageHeader,
     AudioPlayer,
     SignInForm,
     SignUpForm,
@@ -75,13 +82,15 @@ export default {
       isShowNewTrackForm: false,
       isShowNewPlaylistForm: false,
       isShowNavigationMobile: false,
+      isShowPlayerMobile: false,
     };
   },
 
   computed: {
     ...mapState({
-      isAuthorised: (state) => state.auth.isAuthorised,
+      isAuthorized: (state) => state.auth.isAuthorized,
       windowWidth: (state) => state.windowWidth,
+      currentTrackObj: (state) => state.player.currentTrackObj,
     }),
 
     isShowNavigation() {
@@ -104,7 +113,7 @@ export default {
   mounted() {
     this.ACTION_CHECK_IF_AUTHORIZED()
       .then(() => {
-        if (this.isAuthorised) {
+        if (this.isAuthorized) {
           this.ACTION_UPDATE_ALL_MY_TRACKS();
         }
       });
@@ -167,6 +176,14 @@ export default {
     hideNav() {
       this.isShowNavigationMobile = false;
     },
+
+    showPlayerMobile() {
+      this.isShowPlayerMobile = true;
+    },
+
+    hidePlayerMobile() {
+      this.isShowPlayerMobile = false;
+    },
   },
 };
 
@@ -208,6 +225,11 @@ div {
   }
 }
 
+  .magictime {
+    -webkit-animation-duration: 0.1s;
+    animation-duration: 0.1s;
+  }
+
 </style>
 
 <style lang="scss" scoped>
@@ -220,6 +242,7 @@ div {
   }
 
   .nav-with-content{
+    margin-top: 70px;
     width: max-content;
     justify-content: center;
     height: calc( 100% - 200px);
@@ -232,12 +255,12 @@ div {
 
   @media only screen and (max-width: 1023px) {
 
-    .player-audio,
     .page-header{
       display: none;
     }
 
     .nav-with-content{
+      margin-top: 0;
       width: 100%;
       height: 100%;
       border-radius: 25px;

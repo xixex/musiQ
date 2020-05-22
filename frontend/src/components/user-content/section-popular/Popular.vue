@@ -1,6 +1,6 @@
 <template>
   <div class="popular">
-    <track-list
+    <audio-row-list
       :is-addable="true"
       :tracks="allPopularTracks"
     />
@@ -8,13 +8,13 @@
 </template>
 
 <script>
-import TrackList from '@/components/common/TrackList';
+import AudioRowList from '@/components/common/AudioRowList';
 import { mapActions, mapState } from 'vuex';
 import { ACTION_UPDATE_ALL_POPULAR_TRACKS } from '@/store/modules/popularMusic';
 
 export default {
   components: {
-    TrackList,
+    AudioRowList,
   },
 
   computed: {

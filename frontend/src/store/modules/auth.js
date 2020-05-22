@@ -12,20 +12,20 @@ export const ACTION_CHECK_IF_AUTHORIZED = 'ACTION_CHECK_IF_AUTHORIZED';
 
 export default {
   state: () => ({
-    isAuthorised: false,
+    isAuthorized: false,
   }),
 
   mutations: {
     [MUTATION_SIGN_IN](state, { accessToken, refreshToken }) {
       localStorage.setItem('access_token', `Bearer ${accessToken}`);
       localStorage.setItem('refresh_token', `${refreshToken}`);
-      state.isAuthorised = true;
+      state.isAuthorized = true;
     },
 
     [MUTATION_SIGN_OUT](state) {
       localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_token');
-      state.isAuthorised = false;
+      state.isAuthorized = false;
       router.go('/popular');
     },
   },

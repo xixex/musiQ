@@ -15,7 +15,7 @@
           >
           <label>Title</label>
         </div>
-        <track-list
+        <audio-row-list
           class="track-list"
           :is-pickable="true"
           :tracks="allMyTracks"
@@ -37,14 +37,14 @@
 <script>
 
 import Modal from '@/components/common/Modal';
-import TrackList from '@/components/common/TrackList';
+import AudioRowList from '@/components/common/AudioRowList';
 import { mapActions, mapState } from 'vuex';
 import { ACTION_CREATE_NEW_PLAYLIST } from '@/store/modules/playlists';
 import { ACTION_UPDATE_ALL_MY_TRACKS } from '@/store/modules/myMusic';
 
 export default {
   components: {
-    TrackList,
+    AudioRowList,
     Modal,
   },
 

@@ -2,7 +2,7 @@
   <modal @close="closeForm">
     <div class="box">
       <h2 v-text="playlist.title" />
-      <track-list
+      <audio-row-list
         class="track-list"
         :is-pickable="false"
         :tracks="playlist.tracklist"
@@ -14,11 +14,11 @@
 <script>
 
 import Modal from '@/components/common/Modal';
-import TrackList from '@/components/common/TrackList';
+import AudioRowList from '@/components/common/AudioRowList';
 
 export default {
   components: {
-    TrackList,
+    AudioRowList,
     Modal,
   },
 
@@ -82,6 +82,13 @@ export default {
 
     .box h2{
       margin-bottom: 10px;
+    }
+  }
+
+  @media only screen and (max-width: 1023px) {
+    .box{
+      height: calc(100% - 80px);
+      width: 100%;
     }
   }
 </style>

@@ -109,17 +109,24 @@ export default {
     }
   }
 
-  /*@media only screen and (max-width: 1919px) {*/
-  /*  .playlist-wrapper{*/
-  /*    width: 25%;*/
-  /*    padding-top: 25%;*/
-  /*  }*/
-  /*}*/
+  @media only screen and (max-width: 1919px) {
+    .playlist-wrapper{
+      width: 25%;
+      padding-top: 25%;
+    }
+  }
 
-  /*@media only screen and (max-width: 1439px) {*/
-  /*  .playlist-wrapper{*/
-  /*    width: calc(100% / 3);*/
-  /*    padding-top: calc(100% / 3);*/
-  /*  }*/
-  /*}*/
+  @media only screen and (max-width: 1439px) {
+    .playlist-wrapper{
+      width: calc(100% / 3);
+      padding-top: calc(100% / 3);
+    }
+  }
+
+  @media only screen and (max-width: 1023px) {
+    .playlist-wrapper{
+      width: 50%;
+      padding-top: 50%;
+    }
+  }
 </style>

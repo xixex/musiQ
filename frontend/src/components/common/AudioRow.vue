@@ -22,7 +22,7 @@
       />
     </div>
     <div
-      v-if="isAuthorised"
+      v-if="isAuthorized"
       class="audio-controls"
     >
       <template v-if="isAddable">
@@ -116,7 +116,7 @@ export default {
       currentTrackObj: (state) => state.player.currentTrackObj,
       isPlayerPlaying: (state) => state.player.isPlaying,
       allMyTracks: (state) => state.myMusic.allMyTracks,
-      isAuthorised: (state) => state.auth.isAuthorised,
+      isAuthorized: (state) => state.auth.isAuthorized,
     }),
 
     statusLogo() {
@@ -274,7 +274,7 @@ export default {
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      border: 2px solid #34363c;
+      /*border: 2px solid #34363c;*/
     }
 
     &.playing{

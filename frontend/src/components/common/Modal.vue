@@ -1,15 +1,13 @@
 <template>
-  <transition name="modal">
+  <div
+    class="modal"
+  >
+    <slot />
     <div
-      class="modal"
-    >
-      <slot />
-      <div
-        class="overlay"
-        @click.stop="closeModal"
-      />
-    </div>
-  </transition>
+      class="overlay"
+      @click.stop="closeModal"
+    />
+  </div>
 </template>
 
 <script>

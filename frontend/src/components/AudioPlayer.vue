@@ -1,5 +1,8 @@
 <template>
-  <div class="player-audio">
+  <div
+    class="player-audio"
+    @click="showPlayerMobile"
+  >
     <img
       v-if="currentTrackObj"
       class="track-logo"
@@ -9,7 +12,7 @@
     <div class="controls">
       <div
         class="control-btn back-btn"
-        @click="playPrevious"
+        @click.stop="playPrevious"
       >
         <img
           src="@/assets/forward.svg"
@@ -20,7 +23,7 @@
       <div
         v-if="!isPlaying"
         class="control-btn play-btn"
-        @click="playPause"
+        @click.stop="playPause"
       >
         <img
           src="@/assets/play2.svg"
@@ -31,7 +34,7 @@
       <div
         v-else
         class="control-btn pause-btn"
-        @click="playPause"
+        @click.stop="playPause"
       >
         <img
           src="@/assets/pause2.svg"
@@ -41,7 +44,7 @@
       </div>
       <div
         class="control-btn forward-btn"
-        @click="playNext"
+        @click.stop="playNext"
       >
         <img
           src="@/assets/forward.svg"
@@ -164,6 +167,11 @@ export default {
     setTime(event) {
       this.MUTATION_SET_TRACK_MOMENT({ time: event.target.value });
     },
+
+    showPlayerMobile() {
+      console.log('aaa');
+      this.$emit('showPlayerMobile');
+    },
   },
 };
 </script>
@@ -264,6 +272,7 @@ export default {
   .track-info{
     width: 100%;
     padding: 0 4px;
+    overflow: hidden;
   }
 
   .time{
@@ -364,6 +373,27 @@ export default {
 
     .player-audio{
       padding: 8px 20px;
+    }
+  }
+
+  @media only screen and (max-width: 1023px) {
+
+    .time,
+    .track-logo{
+      display: none;
+    }
+
+    .player-audio{
+      padding: 8px 20px;
+    }
+
+    .track-wrapper{
+      width: 70%;
+    }
+
+    .control-btn{
+      width: 30px;
+      height: 30px;
     }
   }
 </style>

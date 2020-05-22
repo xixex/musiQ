@@ -1,34 +1,7 @@
 <template>
   <div class="page-header">
-    <img
-      :src="require('@/assets/logo.png')"
-      alt=""
-      class="logo"
-    >
-    <template v-if="isAuthorised">
-      <div
-        class="control"
-        @click="logOut"
-      >
-        <img
-          alt=""
-          src="@/assets/logout.svg"
-          class="logout"
-        >
-      </div>
-    </template>
+    <template v-if="!isAuthorized">
 
-    <template v-else>
-      <div
-        class="sign-btn"
-        @click="showSignIn"
-        v-text="'Sign In'"
-      />
-      <div
-        class="sign-btn"
-        @click="showSignUp"
-        v-text="'Sign Up'"
-      />
     </template>
   </div>
 </template>
@@ -41,7 +14,7 @@ import { ACTION_SIGN_OUT } from '@/store/modules/auth';
 export default {
   computed: {
     ...mapState({
-      isAuthorised: (state) => state.auth.isAuthorised,
+      isAuthorized: (state) => state.auth.isAuthorized,
     }),
 
     headerText() {
@@ -61,21 +34,9 @@ export default {
   },
 
   methods: {
-    showSignIn() {
-      this.$emit('showSignIn');
-    },
 
-    showSignUp() {
-      this.$emit('showSignUp');
-    },
 
-    logOut() {
-      this.ACTION_SIGN_OUT();
-    },
 
-    ...mapActions({
-      ACTION_SIGN_OUT,
-    }),
   },
 };
 </script>

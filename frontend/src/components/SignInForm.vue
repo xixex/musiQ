@@ -149,6 +149,7 @@ export default {
   @media only screen and (max-width: 1919px) {
     .box {
       padding: 24px;
+      width: 80%;
     }
 
     .box h2{

@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f6343aa-7473-4b7d-a8ba-4bbfa176b8b7" name="Default Changelist" comment="">
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/plus.svg" afterDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,9 +71,14 @@
       <workItem from="1589552707430" duration="78000" />
       <workItem from="1589552799504" duration="146000" />
       <workItem from="1590007368540" duration="548000" />
+<<<<<<< Updated upstream
       <workItem from="1590082496098" duration="263000" />
       <workItem from="1590095202699" duration="1141000" />
       <workItem from="1590155831897" duration="19000" />
+=======
+      <workItem from="1590082496098" duration="1495000" />
+      <workItem from="1590155774429" duration="242000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
