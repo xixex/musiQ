@@ -1,9 +1,5 @@
 <template>
   <div class="page-header">
-<!--    <h2-->
-<!--      class="header-text"-->
-<!--      v-text="headerText"-->
-<!--    />-->
     <img
       :src="require('@/assets/logo.png')"
       alt=""
@@ -169,4 +165,5 @@ export default {
       font-size: 50px;
     }
   }
+
 </style>

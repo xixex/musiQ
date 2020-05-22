@@ -57,7 +57,7 @@ export default {
     position: relative;
     box-sizing: border-box;
     overflow: visible;
-    z-index: 20;
+    z-index: 5;
   }
 
   .playlist{

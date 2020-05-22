@@ -1,6 +1,9 @@
 <template>
   <div class="nav-content">
-    <div class="link-wrapper">
+    <div
+      class="link-wrapper"
+      @click="hideNav"
+    >
       <router-link
         v-if="isAuthorised"
         to="/my-music"
@@ -8,7 +11,10 @@
         v-text="'My music'"
       />
     </div>
-    <div class="link-wrapper">
+    <div
+      class="link-wrapper"
+      @click="hideNav"
+    >
       <router-link
         v-if="isAuthorised"
         to="/playlists"
@@ -16,7 +22,10 @@
         v-text="'My Playlists'"
       />
     </div>
-    <div class="link-wrapper">
+    <div
+      class="link-wrapper"
+      @click="hideNav"
+    >
       <router-link
         to="/popular"
         class="nav-item"
@@ -47,6 +56,13 @@ export default {
     ...mapState({
       isAuthorised: (state) => state.auth.isAuthorised,
     }),
+  },
+
+  methods: {
+    hideNav() {
+      console.log('aa');
+      this.$emit('hideNav');
+    },
   },
 };
 </script>
@@ -97,6 +113,15 @@ export default {
     &:hover{
       border-radius: 8px;
       background: rgba(255,255,255,0.02);
+    }
+  }
+
+  @media only screen and (max-width: 1023px) {
+    .nav-content{
+      width: 70vw;
+      -webkit-box-shadow: 26px 0px 91px 0px rgba(0,0,0,0.75);
+      -moz-box-shadow: 26px 0px 91px 0px rgba(0,0,0,0.75);
+      box-shadow: 26px 0px 91px 0px rgba(0,0,0,0.75);
     }
   }
 </style>

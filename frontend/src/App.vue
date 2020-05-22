@@ -1,17 +1,24 @@
 <template>
   <div id="app">
     <page-header
+      class="page-header"
       @showSignIn="showSignIn"
       @showSignUp="showSignUp"
     />
     <div class="nav-with-content">
-      <navigation-bar />
+      <navigation-bar
+        v-if="isShowNavigation"
+        @hideNav="hideNav"
+        class="nav-bar"
+      />
       <user-content
+        @click.native="hideNav"
         @openNewTrackForm="showNewTrackForm"
         @openNewPlaylistForm="showNewPlaylistForm"
+        @openNav="openNav"
       />
     </div>
-    <audio-player />
+    <audio-player class="audio-player" />
     <sign-in-form
       v-if="isShowSignIn"
       @close="hideSignIn"
@@ -28,6 +35,7 @@
       v-if="isShowNewPlaylistForm"
       @close="hideNewPlaylistForm"
     />
+    <audio-player-mobile />
   </div>
 </template>
 
@@ -37,16 +45,19 @@ import AudioPlayer from '@/components/AudioPlayer';
 import PageHeader from '@/components/page-header/PageHeader';
 import SignInForm from '@/components/SignInForm';
 import SignUpForm from '@/components/SignUpForm';
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapMutations, mapState } from 'vuex';
 import { ACTION_CHECK_IF_AUTHORIZED } from '@/store/modules/auth';
 import NavigationBar from '@/components/user-content/NavigationBar';
 import NewTrackForm from '@/components/NewTrackForm';
 import { ACTION_UPDATE_ALL_MY_TRACKS } from '@/store/modules/myMusic';
 import NewPlaylistForm from '@/components/NewPlaylistForm';
+import { MUTATION_SET_WINDOW_WIDTH } from '@/store';
+import AudioPlayerMobile from '@/components/AudioPlayerMobile';
 
 export default {
 
   components: {
+    AudioPlayerMobile,
     NewPlaylistForm,
     NewTrackForm,
     NavigationBar,
@@ -63,13 +74,31 @@ export default {
       isShowSignUp: false,
       isShowNewTrackForm: false,
       isShowNewPlaylistForm: false,
+      isShowNavigationMobile: false,
     };
   },
 
   computed: {
     ...mapState({
       isAuthorised: (state) => state.auth.isAuthorised,
+      windowWidth: (state) => state.windowWidth,
     }),
+
+    isShowNavigation() {
+      if (this.windowWidth < 1024 && !this.isShowNavigationMobile) {
+        return false;
+      }
+
+      return true;
+    },
+  },
+
+  created() {
+    window.addEventListener('resize', this.windowResize);
+  },
+
+  destroyed() {
+    window.removeEventListener('resize', this.windowResize);
   },
 
   mounted() {
@@ -79,9 +108,26 @@ export default {
           this.ACTION_UPDATE_ALL_MY_TRACKS();
         }
       });
+
+    this.$nextTick(() => {
+      this.MUTATION_SET_WINDOW_WIDTH({ width: document.documentElement.clientWidth });
+    });
   },
 
   methods: {
+    ...mapActions({
+      ACTION_CHECK_IF_AUTHORIZED,
+      ACTION_UPDATE_ALL_MY_TRACKS,
+    }),
+
+    ...mapMutations({
+      MUTATION_SET_WINDOW_WIDTH,
+    }),
+
+    windowResize() {
+      this.MUTATION_SET_WINDOW_WIDTH({ width: document.documentElement.clientWidth });
+    },
+
     showSignIn() {
       this.isShowSignIn = true;
     },
@@ -114,10 +160,13 @@ export default {
       this.isShowNewPlaylistForm = false;
     },
 
-    ...mapActions({
-      ACTION_CHECK_IF_AUTHORIZED,
-      ACTION_UPDATE_ALL_MY_TRACKS,
-    }),
+    openNav() {
+      this.isShowNavigationMobile = true;
+    },
+
+    hideNav() {
+      this.isShowNavigationMobile = false;
+    },
   },
 };
 
@@ -179,5 +228,24 @@ div {
     overflow: hidden;
     box-shadow:  14px 14px 28px #2d3237,
     -14px -14px 28px #3b4047;
+  }
+
+  @media only screen and (max-width: 1023px) {
+
+    .player-audio,
+    .page-header{
+      display: none;
+    }
+
+    .nav-with-content{
+      width: 100%;
+      height: 100%;
+      border-radius: 25px;
+    }
+
+    .nav-bar{
+      position: absolute;
+      z-index: 20;
+    }
   }
 </style>

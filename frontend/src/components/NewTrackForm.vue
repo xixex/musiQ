@@ -36,7 +36,8 @@
             name="audiofile"
             class="upload-box"
             placeholder="Upload File"
-            @change="fileUploadedFromComputer"
+            @change="fileUKontrist55
+                     ploadedFromComputer"
           >
         </div>
         <input
@@ -57,7 +58,6 @@
 import { mapActions } from 'vuex';
 import Modal from '@/components/common/Modal';
 import { ACTION_SIGN_UP } from '@/store/modules/auth';
-import axios from 'axios';
 import { ACTION_ADD_NEW_TRACK } from '@/store/modules/popularMusic';
 
 export default {

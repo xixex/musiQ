@@ -8,12 +8,17 @@ import popularMusic from '@/store/modules/popularMusic';
 
 Vue.use(Vuex);
 
+export const MUTATION_SET_WINDOW_WIDTH = 'MUTATION_SET_WINDOW_WIDTH';
+
 export default new Vuex.Store({
   state: {
-
+    windowWidth: 0,
   },
 
   mutations: {
+    [MUTATION_SET_WINDOW_WIDTH]: (state, { width }) => {
+      state.windowWidth = width;
+    },
   },
 
   actions: {

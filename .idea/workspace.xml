@@ -2,29 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f6343aa-7473-4b7d-a8ba-4bbfa176b8b7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/plus.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/musiQ.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/musiQ.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/assets/main.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/AudioPlayer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AudioPlayer.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ListenPlaylistForm.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/NewPlaylistForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/NewPlaylistForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/NewTrackForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/NewTrackForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/SignInForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SignInForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/SignUpForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SignUpForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/common/AudioRow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/common/AudioRow.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/common/PlaylistCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/common/PlaylistCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/common/PlaylistList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/common/PlaylistList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/common/TrackList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/common/TrackList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/page-header/PageHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/page-header/PageHeader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/user-content/NavigationBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/user-content/NavigationBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/user-content/SearchBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/user-content/SearchBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/user-content/UserContent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/user-content/UserContent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/user-content/section-playlists/ListenPlaylistForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/user-content/section-playlists/ListenPlaylistForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/store/modules/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/modules/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/custom_middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/custom_middleware.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/file_manager.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/file_manager.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/handlers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/request.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/request.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/response.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/response.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker_push.sh" beforeDir="false" afterPath="$PROJECT_DIR$/docker_push.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ffmpeg" beforeDir="false" afterPath="$PROJECT_DIR$/ffmpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/media/handlers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/media_manager.go" beforeDir="false" afterPath="$PROJECT_DIR$/media/media_manager.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/media/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/middleware.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/model.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/model.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/service.go" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,9 +51,15 @@
   </component>
   <component name="ProjectId" id="1bdUPxMbip9QF7FinbsAmF2OlkS" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -53,15 +68,15 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
+  <component name="ServiceViewManager">
+    <option name="viewStates">
       <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
       </list>
     </option>
   </component>
@@ -82,6 +97,7 @@
       <workItem from="1589552799504" duration="146000" />
       <workItem from="1590007368540" duration="548000" />
       <workItem from="1590082496098" duration="263000" />
+      <workItem from="1590095202699" duration="1141000" />
     </task>
     <servers />
   </component>
@@ -100,5 +116,11 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="466" y="131" width="424" height="479" key="FileChooserDialogImpl" timestamp="1590097383560">
+      <screen x="0" y="0" width="1366" height="748" />
+    </state>
+    <state x="466" y="131" width="424" height="479" key="FileChooserDialogImpl/0.0.1366.748@0.0.1366.748" timestamp="1590097383560" />
   </component>
 </project>

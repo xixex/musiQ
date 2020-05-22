@@ -1,7 +1,17 @@
 <template>
   <div class="user-content">
     <div class="user-controls">
-      <template v-if="isAuthorised">
+      <div
+        class="control nav"
+        @click.stop="openNav"
+      >
+        <img
+          class="nav-logo"
+          src="@/assets/burger.svg"
+          alt=""
+        >
+      </div>
+      <template v-if="isAuthorised && windowWidth > 1023">
         <div
           class="control"
           @click="openNewPlaylistForm"
@@ -40,7 +50,23 @@ export default {
   computed: {
     ...mapState({
       isAuthorised: (state) => state.auth.isAuthorised,
+      windowWidth: (state) => state.windowWidth,
     }),
+
+    headerText() {
+      switch (this.$route.path) {
+        case '/my-music':
+          return 'My music';
+        case '/playlists':
+          return 'My Playlists';
+        case '/recent':
+          return 'Recently Listened';
+        case '/popular':
+          return 'Popular';
+        default:
+          return '';
+      }
+    },
   },
 
   methods: {
@@ -50,6 +76,10 @@ export default {
 
     openNewTrackForm() {
       this.$emit('openNewTrackForm');
+    },
+
+    openNav() {
+      this.$emit('openNav');
     },
   },
 };
@@ -63,17 +93,20 @@ export default {
     flex-direction: column;
     width: 50vw;
     height: 100%;
-    border-left: 2px solid #30353b;
+    border-left: 2px solid $border-gray;
     padding: 24px 36px;
     background: #34393f;
   }
 
   .user-controls{
     flex-direction: row;
-    height: 50px;
     justify-content: flex-end;
     align-items: center;
     padding: 0 12px;
+  }
+
+  .headerText{
+    margin-right: auto;
   }
 
   .control{
@@ -108,12 +141,33 @@ export default {
     width: 14px;
   }
 
+  .control.nav{
+    margin-left: 0;
+  }
+
+  .nav-logo{
+    width: 14px;
+  }
+
   @media only screen and (max-width: 1919px) {
 
     .user-content{
       width: 70vw;
       padding: 24px 24px;
       background: #34393f;
+    }
+  }
+
+  @media only screen and (max-width: 1023px) {
+
+    .user-content{
+      width: 100%;
+    }
+
+    .user-controls{
+      padding: 20px 10px 24px;
+      border-bottom: 2px solid $border-gray;
+
     }
   }
 
