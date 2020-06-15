@@ -36,8 +36,7 @@
             name="audiofile"
             class="upload-box"
             placeholder="Upload File"
-            @change="fileUKontrist55
-                     ploadedFromComputer"
+            @change="fileUploadedFromComputer"
           >
         </div>
         <input
